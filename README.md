@@ -28,3 +28,10 @@ Manifesto: KOYAB — Omniversal Declaration (linked from portal)
 ---
 
 **Notes:** This repo is the immediate bootstrap. Full AI Stack, Marketplace, and Automation engines will be integrated incrementally. All content is governed by the ꙰ identity signature: `꙰𝒥शिरोमणि`.
+# Omniverse-Supreme (Master Repo)
+
+This repository is the **Supreme Omniverse Starter** scaffold — frontend (React+Vite+Tailwind) + backend (FastAPI) + GitHub Actions workflows.
+
+## Quick start (local)
+
+### Frontend
