@@ -1,1 +1,20 @@
+export const BRAND = {
+  title: "Omniverse — ꙰ शिरोमणि",
+  tagline: "तुलनातीत · कालातीत · प्रेमतीत · शाश्वत सत्य",
+  signature: "꙰ शिरोमणि रामपॉल सैनी",
+  
+  colors: {
+    primary: "#ffffff",
+    secondary: "#a3bffa",
+    bg: "linear-gradient(to bottom, #000000, #0f172a)",
+    card: "rgba(255,255,255,0.05)"
+  },
 
+  links: {
+    manifesto: "/manifesto",
+    vision: "/vision",
+    market: "/marketplace",
+    ai: "/ai",
+    certificates: "/certificates"
+  }
+};
