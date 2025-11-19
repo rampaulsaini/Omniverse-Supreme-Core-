@@ -1,35 +1,49 @@
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true## Deploy
-- Frontend: GitHub Pages via `frontend-deploy.yml` action
-- Backend: Docker image build action `backend-docker-build.yml` (configure DOCKERHUB_USERNAME/DOCKERHUB_TOKEN secret)
-
-## Notes
-This scaffold is the canonical starting point for Omniverse Supreme. All assets, posters, thumbnails, certificates and automation scripts will be added as separate modules under `frontend/src/assets/` and `backend/services/`.name: github-pages
+name: Deploy Frontend to GitHub Pages (Optimized)
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
+  build:
+    if: ${{ !contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 60
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node (for build, optional)
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "20"
 
-      - name: Build (if any)
+      - name: Install dependencies
+        working-directory: ./frontend
         run: |
-          echo "No build step for static starter. Place build commands here if using a SSG."
+          npm ci
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Build
+        working-directory: ./frontend
+        run: |
+          npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./   # root
+          path: frontend/dist
