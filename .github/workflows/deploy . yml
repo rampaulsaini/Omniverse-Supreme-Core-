@@ -1,4 +1,9 @@
-name: github-pages
+## Deploy
+- Frontend: GitHub Pages via `frontend-deploy.yml` action
+- Backend: Docker image build action `backend-docker-build.yml` (configure DOCKERHUB_USERNAME/DOCKERHUB_TOKEN secret)
+
+## Notes
+This scaffold is the canonical starting point for Omniverse Supreme. All assets, posters, thumbnails, certificates and automation scripts will be added as separate modules under `frontend/src/assets/` and `backend/services/`.name: github-pages
 
 on:
   push:
