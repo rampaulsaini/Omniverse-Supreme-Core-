@@ -1,1 +1,21 @@
+version: "3.9"
 
+services:
+  backend:
+    build: ./backend
+    container_name: supreme-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    container_name: supreme-frontend
+    build:
+      context: ./frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
