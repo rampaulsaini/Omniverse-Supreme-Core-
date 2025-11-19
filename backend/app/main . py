@@ -1,1 +1,19 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
 
+app = FastAPI(title="Omniverse AI Backend")
+
+@app.get("/")
+async def root():
+    return {"status":"Omniverse AI Backend Live", "name":"꙰ शिरोमणि"}
+
+class Prompt(BaseModel):
+    prompt: str
+
+@app.post("/ai/generate")
+async def ai_generate(p: Prompt):
+    # placeholder: real AI engine integrated in Phase C
+    text = f"Received prompt: {p.prompt[:120]}..."
+    return {"result": text}fastapi
+uvicorn[standard]
+pydantic
