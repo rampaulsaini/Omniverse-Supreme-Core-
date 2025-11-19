@@ -1,4 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true# This is a basic workflow to help you get started with Actions
 
 name: CI
 
