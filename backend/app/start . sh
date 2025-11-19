@@ -1,1 +1,39 @@
+#!/bin/sh
+# backend/start.sh — Omniverse production launcher
+# Usage: set env vars WORKERS, HOST, PORT, APP_MODULE before running (defaults below)
 
+set -e
+
+# Defaults (override via env)
+WORKERS=${WORKERS:-3}
+HOST=${HOST:-0.0.0.0}
+PORT=${PORT:-8000}
+APP_MODULE=${APP_MODULE:-app.main:app}
+TIMEOUT=${TIMEOUT:-120}
+KEEPALIVE=${KEEPALIVE:-10}
+
+echo "========================================"
+echo "Starting Omniverse Backend"
+echo "APP_MODULE=${APP_MODULE} HOST=${HOST} PORT=${PORT} WORKERS=${WORKERS}"
+echo "========================================"
+
+# Optional: run any pre-start script if exists (migrations, seeds, etc.)
+if [ -f "./app/prestart.sh" ]; then
+  echo "Running prestart.sh..."
+  sh ./app/prestart.sh
+fi
+
+# Export env for Gunicorn/Uvicorn
+export HOST PORT
+
+# Exec Gunicorn with Uvicorn workers (recommended production pattern)
+exec gunicorn \
+  --bind ${HOST}:${PORT} \
+  --workers ${WORKERS} \
+  --worker-class uvicorn.workers.UvicornWorker \
+  --timeout ${TIMEOUT} \
+  --keep-alive ${KEEPALIVE} \
+  --log-level info \
+  --access-logfile '-' \
+  --error-logfile '-' \
+  ${APP_MODULE}
