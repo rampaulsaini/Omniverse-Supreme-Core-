@@ -1,4 +1,6 @@
-## Deploy
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true## Deploy
 - Frontend: GitHub Pages via `frontend-deploy.yml` action
 - Backend: Docker image build action `backend-docker-build.yml` (configure DOCKERHUB_USERNAME/DOCKERHUB_TOKEN secret)
 
