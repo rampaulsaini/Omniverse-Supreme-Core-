@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+app = FastAPI(title="Omniverse AI Backend")
+
+@app.get("/healthz")
+async def health():
+    return {"status":"ok","service":"omniverse-backend"}from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI(title="Omniverse AI Backend")
