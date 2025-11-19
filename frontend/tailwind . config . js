@@ -1,4 +1,8 @@
-{
+export default {
+  content: ["./index.html","./src/**/*.{js,jsx,ts,tsx}"],
+  theme: { extend: {} },
+  plugins: []
+}{
   "name": "omniverse-frontend",
   "version": "0.0.1",
   "scripts": {
