@@ -19,3 +19,8 @@ services:
       - "5173:80"
     depends_on:
       - backend
+# repo root पर:
+docker-compose build
+docker-compose up --scale backend=2
+# या single service build/run
+docker compose up --build
