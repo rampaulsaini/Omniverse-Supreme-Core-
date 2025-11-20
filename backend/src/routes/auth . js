@@ -1,0 +1,21 @@
+import { Router } from "express";
+import User from "../models/User.js";
+import { generateToken } from "../utils/security.js";
+
+const router = Router();
+
+// quick demo login (no password) - in production add proper auth
+router.post("/login", async (req, res) => {
+  const { username, displayName } = req.body;
+  if (!username) return res.status(400).json({ error: "username required" });
+
+  let user = await User.findOne({ username }).lean().exec();
+  if (!user) {
+    user = await User.create({ username, displayName });
+  }
+
+  const token = generateToken({ id: user._id, username: user.username });
+  res.json({ token, user });
+});
+
+export default router;
