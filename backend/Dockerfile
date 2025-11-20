@@ -1,35 +1,41 @@
-# backend/Dockerfile (production-ready, slim)
-FROM python:3.11-slim
+# backend/Dockerfile
+# Use official lightweight Node image
+FROM node:18-alpine AS builder
 
-# env
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# Create app directory
+WORKDIR /usr/src/app
 
-WORKDIR /app
+# Install build deps
+COPY backend/package.json backend/package-lock.json* ./
+RUN npm ci --only=production || npm install --production
 
-# system deps (kept minimal)
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends build-essential ca-certificates \
-  && rm -rf /var/lib/apt/lists/*
+# Copy source
+COPY backend/ .
 
-# copy requirements and install (ensure requirements.txt includes gunicorn and uvicorn[standard])
-COPY requirements.txt /app/requirements.txt
-RUN pip install --upgrade pip setuptools wheel \
-  && pip install --no-cache-dir -r /app/requirements.txt
+# If any build steps (transpile) needed, run here (none for simple node)
+# RUN npm run build
 
-# create a non-root user
-RUN groupadd -r omniverse && useradd -r -g omniverse omniverse
+# Use a smaller runtime image
+FROM node:18-alpine
 
-# copy app code
-COPY ./app /app/app
-COPY ./start.sh /app/start.sh
+WORKDIR /usr/src/app
 
-# permissions
-RUN chmod +x /app/start.sh \
-  && chown -R omniverse:omniverse /app
+# Create non-root user for better security
+RUN addgroup -S omnigroup && adduser -S omniuser -G omnigroup
 
-USER omniverse
+# Copy production node_modules and app source from builder
+COPY --from=builder /usr/src/app /usr/src/app
 
-EXPOSE 8000
+# Ensure proper ownership
+RUN chown -R omniuser:omnigroup /usr/src/app
 
-CMD ["/app/start.sh"]
+# Switch to non-root user
+USER omniuser
+
+ENV NODE_ENV=production
+ENV PORT=5000
+
+EXPOSE 5000
+
+# Start the server
+CMD ["node", "server.js"]
