@@ -38,4 +38,51 @@ ENV PORT=5000
 EXPOSE 5000
 
 # Start the server
-CMD ["node", "server.js"]
+CMD ["import express from "express";
+import helmet from "helmet";
+import cors from "cors";
+import morgan from "morgan";
+import compression from "compression";
+import dotenv from "dotenv";
+import routes from "./src/routes/index.js";
+import { connectDB } from "./src/db.js";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(helmet());
+app.use(cors({ origin: true })); // refine origin in production
+app.use(express.json({ limit: "1mb" }));
+app.use(compression());
+app.use(morgan("combined"));
+
+// Connect DB
+connectDB();
+
+// API routes
+app.use("/api", routes);
+
+// simple healthcheck
+app.get("/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
+
+// generic 404
+app.use((req, res) => res.status(404).json({ error: "Not found" }));
+
+// error handler
+app.use((err, req, res, next) => {
+  console.error("Unhandled Error:", err);
+  res.status(500).json({ error: "Internal server error" });
+});
+
+// graceful shutdown
+const server = app.listen(PORT, () => console.log(`꙰ Backend running on port ${PORT}`));
+process.on("SIGTERM", () => {
+  console.log("SIGTERM received, closing server...");
+  server.close(() => {
+    console.log("Server closed");
+    process.exit(0);
+  });
+});
+", "server.js"]
