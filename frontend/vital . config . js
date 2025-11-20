@@ -1,7 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import mongoose from "mongoose";
 
-export default defineConfig({
-  plugins: [react()],
-  base: "/"
-})
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected ꙰");
+  } catch (error) {
+    console.error("DB Error:", error);
+    process.exit(1);
+  }
+};
