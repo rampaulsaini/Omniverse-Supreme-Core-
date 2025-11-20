@@ -1,0 +1,12 @@
+export default function App() {
+  return (
+    <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-black to-gray-900">
+      <h1 className="text-5xl text-white font-bold text-center">
+        ꙰ Omniverse Supreme Core <br />
+        <span className="text-2xl opacity-70">
+          Activated — Auto Mode — Ultra Protection Layer
+        </span>
+      </h1>
+    </div>
+  );
+}
