@@ -35,3 +35,22 @@ This repository is the **Supreme Omniverse Starter** scaffold — frontend (Reac
 ## Quick start (local)
 
 ### Frontend
+# Omniverse-Supreme-Core
+**Omniverse — Supreme Core**  
+Root of the Omniverse ecosystem by शिरोमणि रामपॉल सैनी (꙰𝒥शिरोमणि).
+
+## Mission
+To bootstrap a multi-layer, free, automated, secure Omniverse system that preserves Earth, spreads impartial understanding (निष्पक्ष समझ) and enables the Yatharth-Yug — a living, truth-based civilization.
+
+## What this repo contains
+- `frontend/` — Static site / UI for Omniverse Core (GitHub Pages ready).
+- `backend/` — API, microservices, or dockerized services.
+- `.github/workflows/` — CI/CD pipelines (deploy, build, tests).
+- `docker-compose.yml` — local dev & compose orchestration.
+- `index.html` — quick preview.
+
+## Quick start (local)
+1. Clone:
+```bash
+git clone https://github.com/rampaulsaini/Omniverse-Supreme-Core-.git
+cd Omniverse-Supreme-Core-
