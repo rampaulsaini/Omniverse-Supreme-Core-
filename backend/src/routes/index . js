@@ -1,0 +1,15 @@
+import { Router } from "express";
+import authRoutes from "./auth.js";
+import { verifyTokenMiddleware } from "../utils/security.js";
+
+const router = Router();
+
+router.get("/", (req, res) => res.json({ status: "꙰ API Active" }));
+
+router.use("/auth", authRoutes);
+
+router.get("/secure-data", verifyTokenMiddleware, (req, res) => {
+  res.json({ secret: "꙰ Supreme Protected Data", user: req.user });
+});
+
+export default router;
