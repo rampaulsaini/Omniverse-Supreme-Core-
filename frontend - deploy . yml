@@ -5,3 +5,50 @@ on:
       - 'frontend/**'
       - '.github/workflows/frontend-deploy.yml'
   workflow_dispatch:
+
+---
+
+## B — GitHub Actions workflows (copy into `.github/workflows/`)
+
+### 1) `frontend-deploy.yml` (deploy static `frontend/` to GitHub Pages)
+Paste as `.github/workflows/frontend-deploy.yml`:
+
+```yaml
+name: Deploy Frontend to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: |
+          if [ -f package.json ]; then npm ci; fi
+
+      - name: Build (if build script exists)
+        working-directory: ./frontend
+        run: |
+          if grep -q "\"build\"" package.json; then npm run build || true; fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend
+
