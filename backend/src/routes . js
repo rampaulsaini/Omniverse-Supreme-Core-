@@ -1,0 +1,20 @@
+import { Router } from "express";
+import { generateToken, verifyToken } from "./security.js";
+
+const router = Router();
+
+router.get("/", (req, res) => {
+  res.json({ status: "꙰ Backend Active" });
+});
+
+router.post("/login", (req, res) => {
+  const { username } = req.body;
+  const token = generateToken({ username });
+  res.json({ token });
+});
+
+router.get("/secure-data", verifyToken, (req, res) => {
+  res.json({ secret: "꙰ Supreme Protected Data" });
+});
+
+export default router;
