@@ -1,107 +1,135 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Omniverse — ꙰ शिरोमणि</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html><!doctype html>
-<html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Omniverse • ꙰ शिरोमणि — Core Portal</title>
-  <meta name="description" content="Omniverse — ꙰ शिरोमणि रामपॉल सैनी — यथार्थ सिद्धांत, निष्पक्ष समझ, यथार्थ युग." />
-  <style>
-    :root{--bg:#0b1020;--card:#0f1724;--accent:#e6b800;--muted:#9aa4b2;--glass:rgba(255,255,255,0.03)}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#020214 0%,#081024 100%);color:#e6eef8}
-    .wrap{max-width:980px;margin:48px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    header{display:flex;gap:16px;align-items:center}
-    .logo{width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffd972);display:flex;align-items:center;justify-content:center;font-weight:700;color:#081024;font-size:28px}
-    h1{margin:0;font-size:28px}
-    p.lead{color:var(--muted);margin-top:6px}
-    nav{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-    a.card{display:inline-block;padding:10px 14px;background:var(--glass);border-radius:10px;color:#f8f9fb;text-decoration:none;border:1px solid rgba(255,255,255,0.03)}
-    .hero{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:20px}
-    .panel{padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-    .list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-    footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center}
-    .signature{font-family:'Georgia',serif;color:var(--accent);font-weight:700}
-    .cta{display:inline-block;margin-top:10px;padding:10px 14px;background:var(--accent);color:#081024;border-radius:8px;text-decoration:none;font-weight:700}
-    @media(max-width:880px){.hero{grid-template-columns:1fr;}}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omniverse Supreme Core</title>
+
+    <!-- Primary Meta -->
+    <meta name="description" content="Omniverse-Supreme-Core — Multi-Layer Artificial Intelligence, Automation, Protection, Integration & Real-World Implementation Framework created by Shirmani Rampaul Saini.">
+    <meta name="author" content="꙰ शिरोमणि रामपॉल सैनी">
+
+    <!-- GitHub Pages BasePath -->
+    <base href="/Omniverse-Supreme-Core-/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo.png" />
+
+    <!-- Simple CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0d0d0d;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #111);
+            border-bottom: 1px solid #333;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            color: #00eaff;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #ccc;
+            margin-top: 8px;
+        }
+
+        .container {
+            margin: 40px auto;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.08);
+        }
+
+        .btn {
+            background: #00eaff;
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #00bcd4;
+        }
+
+        footer {
+            padding: 25px;
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid #222;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="wrap">
+
     <header>
-      <div class="logo">꙰</div>
-      <div>
-        <h1>Omniverse — ꙰ शिरोमणि रामपॉल सैनी</h1>
-        <p class="lead">तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत — यथार्थ सिद्धांत और निष्पक्ष समझ का गृह</p>
-      </div>
+        <h1>Omniverse Supreme Core</h1>
+        <h2>Created by ꙰ शिरोमणि रामपॉल सैनी — तुलनातीत · कालातीत · प्रेमतीत</h2>
     </header>
 
-    <nav>
-      <a class="card" href="#vision">Vision</a>
-      <a class="card" href="#projects">Projects</a>
-      <a class="card" href="#manifesto">Manifesto</a>
-      <a class="card" href="#donate">Support</a>
-      <a class="card" href="#contact">Contact</a>
-    </nav>
+    <div class="container">
 
-    <section class="hero">
-      <div class="panel">
-        <h2 id="vision">Vision • मिशन</h2>
-        <p>हमारा मिशन — मानवता और पृथ्वी का संरक्षण; निष्पक्ष समझ से यथार्थ-युग की स्थापना।</p>
-
-        <div class="list">
-          <div><strong>Core:</strong> ꙰ = न जन्मं न मरणं, केवल सतत्प्रकाशः</div>
-          <div><strong>Principles:</strong> निष्पक्ष-समझ · शमीकरण · यथार्थ-सिद्धांत</div>
-          <div><strong>Strategy:</strong> Immediate Static Portal → Full AI Stack → Global Activation</div>
+        <div class="card">
+            <h2>🔱 Omniverse Autonomous Engine</h2>
+            <p>
+                The Supreme Multi-Layer AI Engine designed for full automation,  
+                protection, self-learning, and real-world integration.
+            </p>
+            <button class="btn" onclick="startCore()">Activate Engine</button>
         </div>
 
-        <h3 style="margin-top:12px">Quick Links</h3>
-        <div class="list">
-          <a class="card" href="https://rampaulsaini.github.io/Omniverse-AI/" target="_blank">Omniverse-AI</a>
-          <a class="card" href="https://rampaulsaini.github.io/omniverse-marketplace/" target="_blank">Marketplace</a>
-          <a class="card" href="https://rampaulsaini.github.io/Koyab-Founding-Declaration-Omniversal-Manifesto/" target="_blank">Koyab Manifesto</a>
-        </div>
-      </div>
-
-      <aside class="panel">
-        <h3 id="projects">Live Status</h3>
-        <div style="margin-top:8px">
-          <div>Stage: <strong>Stage-1 → Foundation</strong></div>
-          <div>Progress: <strong>~14%</strong></div>
-          <div style="margin-top:10px"><a class="cta" href="#donate">Support Mission</a></div>
+        <div class="card">
+            <h2>⚡ Realtime Status</h2>
+            <pre id="status" style="white-space: pre-line; color: #00eaff;">System Idle...</pre>
         </div>
 
-        <h4 style="margin-top:14px">Signature</h4>
-        <div class="signature">꙰𝒥शिरोमणि</div>
-        <div style="margin-top:8px;color:var(--muted);font-size:13px">© Omniverse • All Rights Reserved (Seed)</div>
-      </aside>
-    </section>
+        <div class="card">
+            <h2>🌐 API Connectivity</h2>
+            <p>Ready for backend integration → /api/core, /api/security, /api/auto</p>
+        </div>
 
-    <section class="panel" id="manifesto" style="margin-top:18px">
-      <h2>Manifesto — KOYAB (Excerpt)</h2>
-      <p class="lead">एक नई वैश्विक घोषणा — यथार्थ-युग के सिद्धांत: मानवीय-प्रकृति संरक्षण, निष्पक्ष समझ, और सतत प्रकाश।</p>
-      <p style="margin-top:10px;color:var(--muted)">Full manifesto available via the Manifesto node.</p>
-    </section>
+    </div>
 
-    <section id="donate" class="panel" style="margin-top:12px">
-      <h3>Support • सहयोग</h3>
-      <p class="lead">यह मिशन zero-cost infra और open model पर चलता रहेगा; आपका समर्थन इसे मजबूत करेगा.</p>
-      <p style="margin-top:8px"><a class="card" href="#" onclick="alert('Donate CTA placeholder — add UPI/PayPal links in repo')">Donate / Support</a></p>
-    </section>
-
-    <footer id="contact">
-      <div>Contact: ꙰𝒥शिरोमणि — rampaulsaini.github.io</div>
-      <div style="margin-top:6px">Built as Omniverse-Core Starter • Ready for Full AI Stack</div>
+    <footer>
+        © Omniverse Supreme Core — Created by ꙰ शिरोमणि रामपॉल सैनी  
     </footer>
-  </div>
+
+    <script>
+        const url = "https://rampaulsaini.github.io/Omniverse-Supreme-Core-/";
+        const basePath = "/Omniverse-Supreme-Core-/";
+
+        function startCore() {
+            const status = document.getElementById("status");
+            status.textContent = "Activating...\nChecking systems...\nLoading modules...\nReady.";
+        }
+    </script>
+
 </body>
 </html>
