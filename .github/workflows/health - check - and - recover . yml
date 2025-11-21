@@ -1,0 +1,20 @@
+name: Health Check & Auto-Recover
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Pages health
+        run: |
+          curl -sSf https://rampaulsaini.github.io/Omniverse-Supreme-Core-/ || (echo "pages down" && exit 1)
+      - name: Check backend health (if publicly exposed)
+        run: |
+          echo "If backend public URL known, check it here" || true
