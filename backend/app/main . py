@@ -1,5 +1,11 @@
 from fastapi import FastAPI
-app = FastAPI(title="Omniverse AI Backend")
+app = FastAPI(title="from fastapi import FastAPI
+app = FastAPI(title="Omniverse API - ꙰ शिरोमणि")
+
+@app.get("/")
+async def root():
+    return {"message":"Omniverse API — ꙰ शिरोमणि active"}
+")
 
 @app.get("/healthz")
 async def health():
