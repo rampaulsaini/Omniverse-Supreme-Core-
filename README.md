@@ -1,5 +1,21 @@
 # Omniverse-Supreme-Core (Zero-Setup Mode)
 
+This repository is fully configured for **Zero-Setup Mode**:
+- No secrets required
+- No tokens needed
+- CI/CD works automatically
+- GitHub Pages auto-deploys
+
+## Quick Start
+1. Replace the repository files with the provided Zero-Setup scripts.
+2. Commit & push to `main`.
+3. GitHub Actions will auto-build and deploy the frontend.
+4. Backend CI will run safely.
+
+## Local Development
+Frontend:  
+# Omniverse-Supreme-Core (Zero-Setup Mode)
+
 This repository is configured for **Zero-Setup Mode** — no secrets required, no manual configuration.
 
 ## Quick start (replace files then push)
