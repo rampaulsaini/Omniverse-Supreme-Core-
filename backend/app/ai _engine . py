@@ -1,1 +1,29 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+import json
+
+app = FastAPI()
+
+# Load knowledge
+with open("data/knowledge.json", "r", encoding="utf-8") as f:
+    KNOWLEDGE = json.load(f)
+
+class Msg(BaseModel):
+    message: str
+    memory: list | None = None
+
+@app.get("/api/health")
+def health():
+    return {"status": "ok", "core": "꙰𝒥शिरोमणि-Core-v1"}
+
+@app.post("/api/chat")
+def chat(msg: Msg):
+    # simple knowledge-based match
+    query = msg.message.lower()
+    best = None
+    for item in KNOWLEDGE:
+        if query in item["text"].lower() or query in item["title"].lower():
+            best = item
+            break
+    return {"reply": best["text"] if best else "꙰ — सत्य स्वतः प्रकट होता है। पूछते रहें।"}
 
