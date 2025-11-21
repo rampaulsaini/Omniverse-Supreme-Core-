@@ -1,3 +1,18 @@
+# Omniverse-Supreme-Core (Zero-Setup Mode)
+
+This repository is configured for **Zero-Setup Mode** — no secrets required, no manual configuration.
+
+## Quick start (replace files then push)
+1. Replace the repository files with the provided Zero-Setup files (workflows, docker-compose, backend main).
+2. Commit & push to `main`.
+3. GitHub Actions will auto-build frontend and run backend checks.
+4. GitHub Pages will publish your frontend (if `frontend/dist` exists or `public/` is provided).
+
+## Local dev
+- Frontend: `cd frontend && npm i && npm run dev` (if frontend exists)
+- Backend: `cd backend && pip install -r requirements.txt && uvicorn app.main:app --reload`
+
+No secrets are required for zero-setup. Future optional enhancements (Cloudflare, DB, AI) can be added later.
 # Omniverse-Core (꙰ शिरोमणि) — Master Portal (Starter)
 
 This repository is the Omniverse-Core starter for ꙰ शिरोमणि रामपॉल सैनी — the root portal that links all Omniverse sub-projects.
