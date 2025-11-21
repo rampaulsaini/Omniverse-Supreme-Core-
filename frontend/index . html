@@ -1,3 +1,26 @@
+/* Omniverse Core Engine — ꙰ शिरोमणि Mode */
+
+class OmniverseCoreEngine {
+    constructor() {
+        this.api = "http://localhost:8000/api/chat";
+        this.memory = [];
+        this.identity = "꙰𝒥शिरोमणि";
+    }
+
+    async ask(input) {
+        const payload = { message: input, memory: this.memory };
+        const res = await fetch(this.api, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        this.memory.push({ user: input, ai: data.reply });
+        return data.reply;
+    }
+}
+
+window.Omniverse = new OmniverseCoreEngine();
 <!-- frontend/index.html -->
 <!doctype html>
 <html lang="hi">
