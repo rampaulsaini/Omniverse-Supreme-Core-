@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build frontend (if exists)
+        run: |
+          if [ -d "frontend" ]; then
+            cd frontend
+            # if you have a build step (vite/rollup), run it; otherwise copy index.html
+            if [ -f "package.json" ]; then
+              npm install
+              npm run build || echo "No build script"
+            else
+              echo "No frontend build script; using static files"
+            fi
+            cd ..
+          fi
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./frontend  # frontend/ should contain index.html or build output
+
+  deploy:
+    needs: build-deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
