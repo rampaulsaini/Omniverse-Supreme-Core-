@@ -28,7 +28,7 @@ jobs:
         run: |
           if npm run | grep -q "build"; then npm run build; else echo "No build script found — copying public as dist" && mkdir -p dist && cp -r public/* dist/ || true; fi
 
-      - name: Deploy to gh-pages (via actions-gh-pages)
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
