@@ -1,3 +1,63 @@
+<!-- frontend/index.html -->
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Omniverse – ꙰𝒥शिरोमणि</title>
+  <meta name="description" content="Omniverse Core — ꙰ शिरोमणि — Yatharth-Yug Portal">
+  <style>
+    body{font-family:Inter,system-ui; background:#0f172a;color:#e6f7ff;margin:0;padding:0}
+    .container{max-width:900px;margin:36px auto;padding:28px;background:#071023;border-radius:12px}
+    header{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(90deg,#38bdf8,#facc15);display:flex;align-items:center;justify-content:center;font-weight:bold}
+    .chat{margin-top:18px}
+    .messages{height:360px;overflow:auto;border:1px solid #113; padding:12px;border-radius:8px;background:#021021}
+    input[type=text]{width:100%;padding:12px;border-radius:8px;border:none;margin-top:12px}
+    button{padding:10px 14px;border-radius:8px;border:none;background:#38bdf8;color:#022}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">꙰</div>
+      <div>
+        <h1>Omniverse — ꙰𝒥शिरोमणि</h1>
+        <div>Root: ꙰ = न द्वैतं न अद्वैतं, केवल सतत् निर्दोष–प्रकाशः।</div>
+      </div>
+    </header>
+
+    <div class="chat">
+      <div class="messages" id="messages"></div>
+      <input id="q" placeholder="अपना प्रश्न लिखें…"/>
+      <button id="send">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const api = "/api/chat"; // when backend proxied; otherwise replace with full url
+    const messages = document.getElementById("messages");
+    document.getElementById("send").onclick = async () => {
+      const q = document.getElementById("q").value;
+      if(!q) return;
+      append("You: "+q);
+      document.getElementById("q").value="";
+      append("…thinking…");
+      try{
+        const res = await fetch(api, {method:"POST",headers:{"Content-Type":"application/json"}, body:JSON.stringify({message:q})});
+        const data = await res.json();
+        popLast(); // remove thinking
+        append("꙰: "+(data.reply || data));
+      }catch(e){
+        popLast();
+        append("Error contacting core.");
+      }
+    };
+    function append(t){ const d=document.createElement("div"); d.textContent=t; messages.appendChild(d); messages.scrollTop=messages.scrollHeight;}
+    function popLast(){ if(messages.lastChild) messages.removeChild(messages.lastChild); }
+  </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
   <head>
