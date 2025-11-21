@@ -1,0 +1,19 @@
+name: Pin to IPFS (optional)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ipfs
+        run: |
+          sudo snap install ipfs
+      - name: Add files to IPFS
+        run: |
+          ipfs init || true
+          ipfs add -r frontend/dist > ipfs_hash.txt
+      - name: Output
+        run: cat ipfs_hash.txt
