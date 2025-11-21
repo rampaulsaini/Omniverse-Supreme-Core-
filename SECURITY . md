@@ -1,0 +1,13 @@
+# Security Policy — Omniverse-Supreme-Core
+
+## Reporting issues
+Please open issues in this repository with the `security` label.
+
+## Data & secrets
+- No secrets stored in repo.
+- Use GitHub Secrets for deploy keys and tokens.
+- Signed commits recommended for sensitive branches.
+
+## Backups
+- Knowledge JSON is versioned and snapshot on each update.
+- IPFS mirroring recommended for immutable archive (optional).
