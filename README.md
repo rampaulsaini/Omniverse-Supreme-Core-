@@ -1,3 +1,13 @@
+# Omniverse-Supreme-Core- (Starter)
+
+## Quick start (local)
+
+### 1) Backend (Docker)
+```bash
+cd backend
+docker build -t omniverse-core-backend .
+docker run --rm -p 8000:8000 -v $(pwd)/data:/app/data omniverse-core-backend
+# Open http://localhost:8000/api/health
 # Omniverse-Supreme-Core (Zero-Setup Mode)
 
 This repository is fully configured for **Zero-Setup Mode**:
