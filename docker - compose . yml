@@ -7,7 +7,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-    restart: always
+    restart: unless-stopped
 
   backend:
     build: ./backend
@@ -16,21 +16,6 @@ services:
       - "8000:8000"
     environment:
       - ENV=production
-      - SECRET_KEY=${SECRET_KEY}
     depends_on:
-      - db
-    restart: always
-
-  db:
-    image: postgres:15-alpine
-    container_name: omniverse_db
-    environment:
-      - POSTGRES_USER=omniverse
-      - POSTGRES_PASSWORD=${POSTGRES_DB_PASSWORD}
-      - POSTGRES_DB=omniverse
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    restart: always
-
-volumes:
-  db_data:
+      - frontend
+    restart: unless-stopped
