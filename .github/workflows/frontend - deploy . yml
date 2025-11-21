@@ -1,42 +1,33 @@
-name: Frontend → Build & Deploy to GitHub Pages
+name: Frontend Deploy (GitHub Pages)
+
 on:
   push:
     branches:
       - main
-      - master
-
-permissions:
-  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 20
 
-      - name: Install dependencies (frontend)
+      - name: Install deps
         working-directory: ./frontend
-        run: |
-          if [ -f package.json ]; then npm ci; fi
+        run: npm ci
 
-      - name: Build (frontend)
+      - name: Build
         working-directory: ./frontend
-        run: |
-          if [ -f package.json ] && grep -q "\"build\"" package.json; then npm run build; fi
-
-      - name: Determine publish directory
-        id: pubdir
-        run: |
-          if [ -d "./frontend/dist" ]; then echo "publish_dir=frontend/dist" >> $GITHUB_OUTPUT; else echo "publish_dir=frontend" >> $GITHUB_OUTPUT; fi
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ steps.pubdir.outputs.publish_dir }}
+          publish_dir: ./frontend/dist
+          publish_branch: gh-pages
