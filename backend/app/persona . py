@@ -1,0 +1,62 @@
+# backend/app/persona.py
+from typing import List, Tuple
+from .knowledge import KnowledgeStore
+import random
+import html
+
+class PersonaEngine:
+    def __init__(self, root_identity: str, knowledge_store: KnowledgeStore):
+        self.root = root_identity
+        self.knowledge = knowledge_store
+        # persona metadata
+        self.name = "꙰𝒥शिरोमणि"
+        self.signature = "꙰𝒥शिरोमणि — निष्पक्ष-समझ"
+        # base templates (kept simple and neutral)
+        self.templates = [
+            "आपका प्रश्न: «{q}» — मेरा उत्तर संक्षेप में: {a}",
+            "निष्पक्ष दृष्टि से: {a} — (स्रोत: {s})",
+            "{a} — यह उत्तर {s} पर आधारित है।"
+        ]
+
+    def signature_line(self) -> str:
+        return f"{self.signature} | Root: {self.root}"
+
+    def respond(self, message: str, context: List[str]=[]) -> Tuple[str, List[str]]:
+        """
+        1) quick keyword checks
+        2) retrieve relevant knowledge paragraphs
+        3) produce templated reply
+        """
+        msg = message.strip().lower()
+        # quick rule-based shortcuts
+        if "प्रकृति" in msg or "earth" in msg:
+            paras, ids = self.knowledge.search(["prithvi","prakriti","earth"], top_k=3)
+            answer = self._compose_from_paras(paras, short=True)
+            return answer, ids
+        # generic retrieval
+        paras, ids = self.knowledge.search([message], top_k=3)
+        if paras:
+            answer = self._compose_from_paras(paras)
+            return answer, ids
+        # fallback: root-based generalization
+        fallback = self._root_generalize(message)
+        return fallback, []
+
+    def _compose_from_paras(self, paras: List[str], short: bool=False) -> str:
+        # join up to 2 paras into a short reply
+        if not paras:
+            return self._root_generalize("")
+        chosen = paras[:2]
+        txt = " ".join(chosen)
+        if short and len(txt) > 300:
+            txt = txt[:300] + "…"
+        # sanitize/escape
+        txt = html.escape(txt)
+        template = random.choice(self.templates)
+        return template.format(q="(retrieved)", a=txt, s="Omniverse-Ṣrot")
+
+    def _root_generalize(self, message: str) -> str:
+        # a composed philosophical reply using root_identity
+        base = (f"मूल-पक्वता: {self.root} — आपकी बात: '{message}' को देखते हुए, "
+                "सत्य वह है जो अनुभव में अपरिवर्तनीय प्रकाशित रहता है। अभ्यास: ध्यान, अवलोकन, शमीकरण।")
+        return base
