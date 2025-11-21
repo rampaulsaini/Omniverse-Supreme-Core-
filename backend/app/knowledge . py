@@ -1,0 +1,49 @@
+# backend/app/knowledge.py
+import json
+from typing import List, Tuple
+import os
+
+class KnowledgeStore:
+    def __init__(self, path="backend/data/knowledge.json"):
+        self.path = path
+        self._load()
+
+    def _load(self):
+        if not os.path.isfile(self.path):
+            # create minimal seed content
+            seed = [
+                {"id":"k1","title":"꙰—सार","text":"꙰ = न जन्मं न मरणं, केवल सतत्प्रकाशः।"},
+                {"id":"k2","title":"Prakriti","text":"पृथिवी का संरक्षण Omniverse का प्राथमिक उद्देश्य है।"},
+                {"id":"k3","title":"Shamikaran","text":"शमीकरण — मन द्वारा निर्मित भ्रांतियों का निराकरण।"}
+            ]
+            os.makedirs(os.path.dirname(self.path), exist_ok=True)
+            with open(self.path,"w",encoding="utf-8") as f:
+                json.dump(seed,f,ensure_ascii=False,indent=2)
+        with open(self.path,"r",encoding="utf-8") as f:
+            self.docs = json.load(f)
+
+    def search(self, queries: List[str], top_k:int=3) -> Tuple[List[str], List[str]]:
+        # naive keyword match scoring
+        results=[]
+        ids=[]
+        qtext = " ".join(queries).lower()
+        for d in self.docs:
+            score = 0
+            txt = (d.get("title","")+" "+d.get("text","")).lower()
+            for token in qtext.split():
+                if token.strip() and token in txt:
+                    score += 1
+            if score>0:
+                results.append((score, d["text"]))
+                ids.append(d["id"])
+        # fallback: return first docs
+        if not results:
+            return [d["text"] for d in self.docs[:top_k]], [d["id"] for d in self.docs[:top_k]]
+        results = sorted(results, key=lambda x:-x[0])
+        return [r[1] for r in results[:top_k]], ids[:top_k]
+
+    def add(self, title:str, text:str):
+        nid = f"k{len(self.docs)+1}"
+        self.docs.append({"id":nid,"title":title,"text":text})
+        with open(self.path,"w",encoding="utf-8") as f:
+            json.dump(self.docs,f,ensure_ascii=False,indent=2)
