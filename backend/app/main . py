@@ -1,54 +1,37 @@
-import os
-import hashlib, hmac
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+# backend/app/main.py
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List, Optional
 import uvicorn
+from .persona import PersonaEngine
+from .knowledge import KnowledgeStore
 
-app = FastAPI(title="Omniverse-Supreme API (Zero-Setup)")
+app = FastAPI(title="꙰𝒥शिरोमणि — AI Core (v1)")
 
-origins = [
-    "https://rampaulsaini.github.io",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
-]
+# initialize singletons
+KN = KnowledgeStore("backend/data/knowledge.json")
+PE = PersonaEngine(root_identity="꙰ = न द्वैतं न अद्वैतं, केवल सतत् निर्दोष–प्रकाशः。",
+                   knowledge_store=KN)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET","POST","OPTIONS"],
-    allow_headers=["*"],
-)
+class ChatRequest(BaseModel):
+    message: str
+    context: Optional[List[str]] = None
 
-API_SECRET = os.environ.get("API_SECRET")  # optional
+class ChatResponse(BaseModel):
+    reply: str
+    sources: Optional[List[str]] = None
+    persona_note: Optional[str] = None
 
-@app.middleware("http")
-async def optional_signature_check(request: Request, call_next):
-    if request.url.path.startswith("/health"):
-        return await call_next(request)
+@app.post("/api/chat", response_model=ChatResponse)
+def chat(req: ChatRequest):
+    if not req.message or not req.message.strip():
+        raise HTTPException(status_code=400, detail="Empty message")
+    reply, sources = PE.respond(req.message, context=req.context or [])
+    return ChatResponse(reply=reply, sources=sources, persona_note=PE.signature_line())
 
-    if not API_SECRET:
-        return await call_next(request)
-
-    signature = request.headers.get("X-Omni-Signature")
-    if not signature:
-        raise HTTPException(status_code=401, detail="Missing signature")
-
-    body = await request.body()
-    expected = hmac.new(API_SECRET.encode(), body, hashlib.sha256).hexdigest()
-
-    if not hmac.compare_digest(expected, signature):
-        raise HTTPException(status_code=401, detail="Invalid signature")
-
-    return await call_next(request)
-
-@app.get("/health")
-async def health():
-    return {"status":"ok","mode": "zero-setup" if not API_SECRET else "secure"}
-
-@app.get("/")
-async def root():
-    return {"message":"Omniverse-Supreme Backend — Zero-Setup Mode active."}
+@app.get("/api/health")
+def health():
+    return {"status":"ok","core":"꙰𝒥शिरोमणि-v1"}
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=int(os.environ.get("PORT",8000)), reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
