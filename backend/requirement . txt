@@ -1,4 +1,8 @@
 fastapi
-pydantic
 uvicorn[standard]
-gunicorn
+python-multipart
+pydantic
+jinja2
+requests
+cryptography
+pandas
