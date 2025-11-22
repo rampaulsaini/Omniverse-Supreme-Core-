@@ -1,0 +1,45 @@
+name: Phase-3 Core Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**"
+
+jobs:
+  core-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate Structure
+        run: |
+          echo "VALIDATING REPO STRUCTURE..."
+          if [ ! -d "frontend" ]; then echo "Frontend folder missing"; exit 1; fi
+          if [ ! -d "backend" ]; then echo "Backend folder missing"; exit 1; fi
+          echo "STRUCTURE OK ✔"
+
+      - name: Auto-Fix Missing Configs
+        run: |
+          echo "SYNCING CONFIG FILES..."
+          [ ! -f frontend/.env ] && echo "VITE_API_URL=/api" > frontend/.env
+          [ ! -f backend/.env ] && echo "PORT=3000" > backend/.env
+
+      - name: Generate Sync Log
+        run: |
+          echo "Phase-3 Sync: $(date -u)" > CORE-SYNC-LOG.txt
+
+      - name: Commit Sync Changes
+        run: |
+          git config --global user.email "sync@github.com"
+          git config --global user.name "OmniSync Engine"
+          git add .
+          git commit -m "Phase-3: Core Engine Sync Update" || echo "No changes"
+
+      - name: Done
+        run: echo "PHASE-3 CORE SYNC COMPLETE ✔"
