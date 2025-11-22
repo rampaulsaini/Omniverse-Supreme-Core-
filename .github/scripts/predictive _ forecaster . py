@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# .github/scripts/predictive_forecaster.py
+import datetime, math, json
+
+# baseline conservative metrics (these are placeholders; your real metrics will replace them)
+current_month_avg = 200000  # INR per month baseline
+growth_rate_monthly = 0.08  # 8% monthly compounding (example)
+months_90 = 3
+months_5y = 60
+
+def compound(months, start, rate):
+    vals = []
+    v = start
+    for m in range(1, months+1):
+        v = v * (1+rate)
+        vals.append(v)
+    return vals
+
+forecast_90 = compound(months_90, current_month_avg, growth_rate_monthly)
+forecast_5y = compound(months_5y, current_month_avg, growth_rate_monthly)
+
+now = datetime.datetime.utcnow().isoformat()
+with open("FORECASTS.md","w",encoding="utf-8") as f:
+    f.write(f"# Omniverse Revenue Forecasts\n\nGenerated: {now}\n\n")
+    f.write("## 90-day conservative projection (monthly INR)\n")
+    for i, v in enumerate(forecast_90, start=1):
+        f.write(f"- Month {i}: ₹{int(v):,}\n")
+    f.write("\n## 5-year projection (monthly INR sample points)\n")
+    for i in [1,3,6,12,24,36,48,60]:
+        f.write(f"- Month {i}: ₹{int(forecast_5y[i-1]):,}\n")
+    f.write("\n*Note: This is a simple compound-growth projection. Replace baseline and rate with actual metrics for accuracy.*\n")
+print("Predictive forecaster wrote FORECASTS.md")
