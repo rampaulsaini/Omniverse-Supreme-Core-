@@ -1,35 +1,39 @@
-name: Deploy Frontend to GitHub Pages (Zero-Setup)
-
+name: Deploy Pages & Backend Check
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-
+    branches: [ "main" ]
 jobs:
-  build-and-deploy:
+  backend-check:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '20'
-
-      - name: Install dependencies
+          python-version: "3.11"
+      - name: Install backend deps
         run: |
-          if [ -f package-lock.json ]; then npm ci; else npm i; fi
-
-      - name: Build
+          cd backend || exit 0
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run simple backend test
         run: |
-          if npm run | grep -q "build"; then npm run build; else echo "No build script found — copying public as dist" && mkdir -p dist && cp -r public/* dist/ || true; fi
+          python - <<'PY'
+import importlib.util, sys, os
+spec = importlib.util.spec_from_file_location("app", "backend/app/main.py")
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+print("backend import ok")
+PY
 
-      - name: Deploy to gh-pages
+  build-and-deploy-pages:
+    needs: backend-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./frontend
