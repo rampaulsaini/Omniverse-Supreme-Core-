@@ -1,3 +1,21 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+import hashlib, json, os, time
+
+app = FastAPI(title="Omniverse-Core Backend")
+
+@app.get("/api/health")
+def health():
+    return {"status":"ok","time":time.time()}
+
+class SignatureReq(BaseModel):
+    content: str
+
+@app.post("/api/sign")
+def sign(req: SignatureReq):
+    # simple content hash - place for ed25519 sign later
+    h = hashlib.sha256(req.content.encode("utf-8")).hexdigest()
+    return {"sha256": h}
 # backend/app/main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
