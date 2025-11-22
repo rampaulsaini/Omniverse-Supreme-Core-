@@ -1,4 +1,24 @@
 from fastapi import FastAPI
+import time, os
+# existing imports...
+
+app = FastAPI(title="Omniverse-Core Backend")
+
+# existing endpoints (health, sign etc.)
+@app.get("/api/health")
+def health():
+    return {"status":"ok","time":time.time()}
+
+# --- include AI router ---
+try:
+    from ai_engine.api import router as ai_router
+    app.include_router(ai_router, prefix="", tags=["ai"])
+    print("AI router included")
+except Exception as e:
+    print("AI router not included (dev):", e)
+
+# rest of app...
+from fastapi import FastAPI
 from pydantic import BaseModel
 import hashlib, json, os, time
 
