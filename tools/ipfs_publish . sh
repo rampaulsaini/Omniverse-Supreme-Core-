@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# requires: ipfs cli installed and `ipfs daemon` running in CI runner or self-host
+dir="frontend/assets/generated"
+if [ -d "$dir" ]; then
+  CID=$(ipfs add -r $dir | tail -n1 | awk '{print $2}')
+  echo "IPFS CID: $CID"
+  echo "{\"ipfs_cid\":\"$CID\",\"time\":$(date +%s)}" > signatures/ipfs_manifest.json
+  git add signatures/ipfs_manifest.json
+  git commit -m "ipfs manifest $CID" || true
+  git push origin main || true
+fi
