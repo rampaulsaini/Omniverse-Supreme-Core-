@@ -1,1 +1,31 @@
+name: Phase-5 Membership Seed
 
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'frontend/donate.html'
+      - 'frontend/membership/**'
+
+jobs:
+  membership:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate membership pages
+        run: |
+          mkdir -p frontend/membership
+          cat > frontend/membership/index.html <<'HTML'
+<!doctype html><html><head><meta charset="utf-8"><title>Join — Omniverse Membership</title></head><body>
+<h1>Become a Supporter</h1>
+<p>Membership options (placeholder). Integrate Stripe/PayPal in repo secrets when ready.</p>
+</body></html>
+HTML
+      - name: Commit membership page
+        run: |
+          git config user.name "omni-pay-bot"
+          git config user.email "omni-pay@users.noreply.github.com"
+          git add frontend/membership/index.html
+          git commit -m "Phase-5: Add membership seed page" || echo "No changes"
+          git push origin HEAD:main
+          
