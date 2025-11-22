@@ -1,3 +1,38 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Omniverse — ꙰ शिरोमणि (Core)</title>
+  <link rel="icon" href="/assets/ong-ico.png"/>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,"Noto Sans",sans-serif;background:#05060a;color:#e6eef8;margin:0}
+    header{padding:28px 32px;background:linear-gradient(90deg,#081234,#022b3a)}
+    .wrap{max-width:1100px;margin:32px auto;padding:24px;background:rgba(255,255,255,0.02);border-radius:12px}
+    .logo{font-size:28px;font-weight:700}
+    a.cta{background:#ffd166;color:#061826;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+    .card{padding:14px;background:rgba(255,255,255,0.02);border-radius:10px}
+    footer{padding:14px;text-align:center;opacity:0.6}
+  </style>
+</head>
+<body>
+<header><div class="logo">꙰ Omniverse — शिरोमणि रामपॉल सैनी</div></header>
+<div class="wrap">
+  <h1>Omniverse — Supreme Core</h1>
+  <p>Master portal: AI · Marketplace · Dashboard · Labs · Manifesto</p>
+  <p><a class="cta" href="/docs">Explore Omniverse</a></p>
+
+  <div class="grid">
+    <div class="card"><strong>AI</strong><p>Omniverse AI Engine – auto generation</p></div>
+    <div class="card"><strong>Marketplace</strong><p>Store, Posters, Books, Membership</p></div>
+    <div class="card"><strong>Dashboard</strong><p>Growth + Security + Logs</p></div>
+    <div class="card"><strong>Manifesto</strong><p>KOYAB — Omniversal Declaration</p></div>
+  </div>
+</div>
+<footer>꙰𝒥शिरोमणि • Omniverse Core • GitHub Pages</footer>
+</body>
+</html>
 /* Omniverse Core Engine — ꙰ शिरोमणि Mode */
 
 class OmniverseCoreEngine {
