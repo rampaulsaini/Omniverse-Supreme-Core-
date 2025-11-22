@@ -1,0 +1,34 @@
+name: Phase-4 Predictive Scaling Matrix
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # weekly on Monday 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run predictive forecaster
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Execute forecaster
+        run: |
+          python .github/scripts/predictive_forecaster.py
+
+      - name: Commit projections
+        run: |
+          git config user.email "predictor@users.noreply.github.com"
+          git config user.name "Predictor"
+          git add FORECASTS.md || true
+          git commit -m "Forecasts: weekly update" || echo "No changes"
+          git push origin HEAD:main || true
+          
