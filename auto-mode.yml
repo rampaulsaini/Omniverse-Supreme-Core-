@@ -1,0 +1,19 @@
+name: AutoMode Orchestrator
+on:
+  push:
+    branches: [ main ]
+jobs:
+  orchestrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with: node-version: '20'
+      - name: Run omniverse automode script
+        run: |
+          bash scripts/omniverse-automode.sh
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      DOCKER_REG: ${{ secrets.DOCKER_REG }}
+      
