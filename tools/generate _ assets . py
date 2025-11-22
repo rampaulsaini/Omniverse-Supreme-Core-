@@ -1,0 +1,21 @@
+import os, json
+from jinja2 import Environment, FileSystemLoader
+from pathlib import Path
+env = Environment(loader=FileSystemLoader('tools/templates'))
+DATA = {
+  "thumbnails": [
+    {"title":"तू कौन? — मैं शिरोमणि","subtitle":"तुलनातीत समझ बनाम परंपरा","photo":"assets/photo1.jpg"},
+    # ... add all 40 items or load from json
+  ],
+  "posters":[
+    {"title":"꙰𝒥शिरोमणि सूत्र — आरम्भ","shloka":"꙰ = न जन्मं न मरणं, केवल सतत्प्रकाशः","photo":"assets/photo1.jpg"}
+  ]
+}
+os.makedirs("frontend/assets/generated", exist_ok=True)
+tpl = env.get_template('thumbnail.svg.j2')
+for i,t in enumerate(DATA["thumbnails"],1):
+    out = tpl.render(title=t["title"], subtitle=t["subtitle"], photo=t["photo"])
+    path = f"frontend/assets/generated/thumb_{i}.svg"
+    with open(path,"w",encoding="utf-8") as f:
+        f.write(out)
+print("SVG thumbnails generated")
