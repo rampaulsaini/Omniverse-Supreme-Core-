@@ -1,1 +1,70 @@
+name: Phase-3 Manifest & Deploy
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+      - "backend/**"
+      - ".github/workflows/phase3-manifest-and-deploy.yml"
+
+jobs:
+  manifest-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: |
+          cd frontend && npm install
+          cd ../backend && npm install
+
+      - name: Auto-Generate Manifest
+        run: |
+          echo "{
+            \"buildVersion\": \"$(date +%s)\",
+            \"updated\": \"$(date -u)\",
+            \"source\": \"Phase-3-Auto\"
+          }" > manifest.json
+
+      - name: Commit Manifest
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add manifest.json
+          git commit -m "Phase-3: Auto-update manifest" || echo "No changes"
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Build Backend
+        run: |
+          cd backend
+          npm run build
+
+      - name: Deploy Frontend (Static Hosting)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: frontend/dist
+
+      - name: Deploy Backend to Node Server
+        run: |
+          echo "Deploying to backend server..."
+          # Put SCP / SSH deployment here if needed
+
+      - name: Completed
+        run: echo "PHASE-3 MANIFEST + DEPLOY COMPLETE ✔"
+        
