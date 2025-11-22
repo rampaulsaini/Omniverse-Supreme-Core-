@@ -1,0 +1,36 @@
+name: Phase-4 AECG: Auto-Evolving Code Generator
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # daily at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  code-evolve:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run Code Evolver (stub)
+        run: |
+          python .github/scripts/code_evolver.py
+
+      - name: Commit report
+        run: |
+          git config user.email "aecg@users.noreply.github.com"
+          git config user.name "AECG"
+          git add CODE-EVOLVER-REPORT.md || true
+          git commit -m "AECG: report $(date -u)" || echo "No changes"
+          git push origin HEAD:main || true
+          
