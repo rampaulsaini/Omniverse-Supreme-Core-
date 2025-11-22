@@ -1,1 +1,22 @@
+name: AI Engine sanity
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: python-version: "3.11"
+      - name: Install deps
+        run: |
+          pip install -r backend/requirements.txt
+      - name: Run smoke call
+        run: |
+          python - <<'PY'
+from backend.ai_engine.model_adapter import generate
+print("SMOKE:", generate("Hello Omniverse test", max_tokens=32)[:80])
+PY
 
