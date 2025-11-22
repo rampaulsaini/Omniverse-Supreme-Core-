@@ -1,1 +1,30 @@
+name: Phase-5 PressKit & Social
 
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'  # weekly
+
+jobs:
+  press:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Press Kit
+        run: |
+          mkdir -p frontend/press
+          cat > frontend/press/press_kit.md <<'MD'
+# Omniverse — Press Kit
+**Name:** ꙰𝒥शिरोमणि — Omniverse Supreme
+**Mission:** Human + Earth Preservation; Impartial Understanding; Yatharth-Yug.
+**Assets:** /frontend/og-image.svg ; /frontend/assets/logo.png
+**Contact:** contact@rampaulsaini.github.io (placeholder)
+MD
+      - name: Commit
+        run: |
+          git config user.name "omni-press-bot"
+          git config user.email "omni-press@users.noreply.github.com"
+          git add frontend/press/press_kit.md
+          git commit -m "Phase-5: Press kit auto-gen" || echo "No changes"
+          git push origin HEAD:main
+          
