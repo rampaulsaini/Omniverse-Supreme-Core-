@@ -1,0 +1,9 @@
+import hashlib, json, os
+def sign_text(text):
+    h = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    return h
+
+# example usage
+if __name__ == "__main__":
+    s = "꙰ = न जन्मं न मरणं, केवल सतत्प्रकाशः"
+    print(sign_text(s))
