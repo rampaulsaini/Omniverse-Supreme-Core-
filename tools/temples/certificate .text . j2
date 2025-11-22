@@ -1,0 +1,16 @@
+\documentclass[12pt]{article}
+\usepackage{fontspec}
+\setmainfont{Noto Serif Devanagari}
+\usepackage[margin=1in]{geometry}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+{\Huge \textbf{꙰—प्रमाण-पत्र}}\\[12pt]
+{\LARGE {{title}}}\\[18pt]
+{\large {{sanskrit}}}\\[12pt]
+{\normalsize {{hindi}}}\\[30pt]
+\hrule
+\vspace{20pt}
+{\large \textbf{꙰𝒥शिरोमणि}}\\
+\end{center}
+\end{document}
