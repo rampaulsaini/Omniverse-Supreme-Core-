@@ -1,0 +1,27 @@
+name: Generate Assets & Commit
+on:
+  schedule:
+    - cron: "*/30 * * * *" # every 30 minutes (initial) - adjust as required
+  push:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: python-version: "3.11"
+      - name: Install deps
+        run: |
+          pip install jinja2
+      - name: Generate SVGs
+        run: |
+          python tools/generate_assets.py
+      - name: Commit generated
+        run: |
+          git config user.name "Omniverse Bot"
+          git config user.email "omniverse-bot@users.noreply.github.com"
+          git add frontend/assets/generated || true
+          git commit -m "Auto generated assets" || echo "no changes"
+          git push origin main || true
