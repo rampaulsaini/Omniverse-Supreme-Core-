@@ -1,0 +1,43 @@
+name: Phase-4 ZDRE: Zero-Downtime Rolling Executor
+
+on:
+  workflow_run:
+    workflows: ["Phase-4 ONDE: Omni-Neural Deployment Engine"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  rolling-exec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Load deploy manifest
+        run: |
+          if [ -f frontend/deploy-manifest.json ]; then
+            cat frontend/deploy-manifest.json
+          else
+            echo "{}" > frontend/deploy-manifest.json
+          fi
+
+      - name: Simulate Canary Check & Rolling Update
+        run: |
+          echo "Starting rolling update simulation..."
+          TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
+          echo "roll_step=canary,ts=$TIMESTAMP" >> CORE-ROLL.log
+          sleep 2
+          echo "roll_step=half,ts=$TIMESTAMP" >> CORE-ROLL.log
+          sleep 2
+          echo "roll_step=complete,ts=$TIMESTAMP" >> CORE-ROLL.log
+          tail -n 10 CORE-ROLL.log || true
+
+      - name: Commit CORE-ROLL.log
+        run: |
+          git config user.email "onde-bot@users.noreply.github.com"
+          git config user.name "onde-bot"
+          git add CORE-ROLL.log || true
+          git commit -m "ONDE: rolling update log $(date -u)" || echo "No changes to commit"
+          git push origin HEAD:main || echo "Push may be blocked in protected branch"
