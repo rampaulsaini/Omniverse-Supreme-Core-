@@ -1,0 +1,53 @@
+name: Phase-4 AEHN: Active Error-Healing Node
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  health-and-heal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Pages (frontend)
+        run: |
+          if curl -sSf https://rampaulsaini.github.io/Omniverse-Supreme-Core-/ ; then
+            echo "Pages OK"
+          else
+            echo "Pages FAIL"
+            touch AEHN_FAIL_MARKER
+          fi
+
+      - name: Check backend health (local simulation)
+        run: |
+          echo "Simulated backend check (no public endpoint configured)"
+
+      - name: Attempt auto-remediation
+        if: always()
+        run: |
+          if [ -f AEHN_FAIL_MARKER ]; then
+            echo "Attempting auto remediation: re-trigger pages build by touching a file"
+            date -u > .ae_restart_stamp
+            git config user.email "ae-hn@users.noreply.github.com"
+            git config user.name "AEHN"
+            git add .ae_restart_stamp
+            git commit -m "AEHN: auto remediation trigger $(date -u)" || echo "no changes"
+            git push origin HEAD:main || echo "push failed (protected branch?)"
+            echo "Remediation attempted"
+          else
+            echo "No failure detected"
+          fi
+
+      - name: Create AEHN report
+        run: |
+          echo "AEHN report - $(date -u)" > AEHN_REPORT.txt
+          if [ -f AEHN_FAIL_MARKER ]; then echo "Fail detected" >> AEHN_REPORT.txt; fi
+          git add AEHN_REPORT.txt || true
+          git commit -m "AEHN: report $(date -u)" || echo "No changes"
+          git push origin HEAD:main || true
