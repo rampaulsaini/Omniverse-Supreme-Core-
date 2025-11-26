@@ -1,97 +1,100 @@
-# Omniverse-Supreme-Core- (Starter)
+# Omniverse‑Supreme‑Core — README
 
-## Quick start (local)
+**Owner / Signature:** ꙰ शिरोमणि रामपॉल सैनी
 
-### 1) Backend (Docker)
+---
+
+## Project Overview
+
+Omniverse‑Supreme‑Core एक हल्का, Zero‑Setup starter रिपॉज़िटरी है जो तुरंत सार्वजनिक मौजूदगी (GitHub Pages), मास्टर‑नेविगेशन और Omniverse की सब‑प्रोजेक्ट शृंखला के लिए बूटस्ट्रैप प्रदान करता है। यह केवल ꙰‑पहचान और शिरोमणि नाम के अंतर्गत संचालित होगा — किसी भी धार्मिक प्रतीक का प्रयोग वर्जित है।
+
+---
+
+## Quick Start (Zero‑Setup)
+
+1. इस रिपॉज़िटरी को `main` ब्रांच पर रखें।
+2. GitHub Actions स्वतः फ़्रंटएंड बिल्ड और deploy करेगा (यदि `frontend/dist` या `public/` मौजूद है)।
+3. GitHub Pages को सक्षम करें (Settings → Pages → Branch: `gh-pages` या `main` / Folder: `/`).
+
+---
+
+## Local Development
+
+**Frontend (optional)**
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**Backend (Docker)**
+
 ```bash
 cd backend
 docker build -t omniverse-core-backend .
 docker run --rm -p 8000:8000 -v $(pwd)/data:/app/data omniverse-core-backend
 # Open http://localhost:8000/api/health
-# Omniverse-Supreme-Core (Zero-Setup Mode)
+```
 
-This repository is fully configured for **Zero-Setup Mode**:
-- No secrets required
-- No tokens needed
-- CI/CD works automatically
-- GitHub Pages auto-deploys
+**Backend (without Docker)**
 
-## Quick Start
-1. Replace the repository files with the provided Zero-Setup scripts.
-2. Commit & push to `main`.
-3. GitHub Actions will auto-build and deploy the frontend.
-4. Backend CI will run safely.
-
-## Local Development
-Frontend:  
-# Omniverse-Supreme-Core (Zero-Setup Mode)
-
-This repository is configured for **Zero-Setup Mode** — no secrets required, no manual configuration.
-
-## Quick start (replace files then push)
-1. Replace the repository files with the provided Zero-Setup files (workflows, docker-compose, backend main).
-2. Commit & push to `main`.
-3. GitHub Actions will auto-build frontend and run backend checks.
-4. GitHub Pages will publish your frontend (if `frontend/dist` exists or `public/` is provided).
-
-## Local dev
-- Frontend: `cd frontend && npm i && npm run dev` (if frontend exists)
-- Backend: `cd backend && pip install -r requirements.txt && uvicorn app.main:app --reload`
-
-No secrets are required for zero-setup. Future optional enhancements (Cloudflare, DB, AI) can be added later.
-# Omniverse-Core (꙰ शिरोमणि) — Master Portal (Starter)
-
-This repository is the Omniverse-Core starter for ꙰ शिरोमणि रामपॉल सैनी — the root portal that links all Omniverse sub-projects.
-
-## Purpose
-- Immediate, secure public presence (GitHub Pages).
-- Master navigation to all sub-projects (AI, Marketplace, Dashboard, Labs, Manifesto).
-- Branding: ꙰ signature, manifesto excerpt, donation CTA, contact.
-- Acts as seed for Full AI Stack integration.
-
-## How to deploy (quick)
-1. Create a new GitHub repository and push these files.
-2. Enable GitHub Pages in Settings (branch: `gh-pages` or `main` / folder `/`).
-3. (Optional) Add Cloudflare in front for Zero-Trust and caching.
-4. For advanced CI/CD and AI features, see EMERGE branch / docs (to be added).
-
-## Structure (starter)
-- index.html — main portal page
-- .github/workflows/deploy.yml — GitHub Actions for Pages
-- assets/ — images, logos (add your photos here)
-- docs/ — future content
-
-## Contact
-Owner: ꙰ शिरोमणि रामपॉल सैनी  
-Website (seed): Omniverse-Core (this repo)  
-Manifesto: KOYAB — Omniversal Declaration (linked from portal)
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
 
 ---
 
-**Notes:** This repo is the immediate bootstrap. Full AI Stack, Marketplace, and Automation engines will be integrated incrementally. All content is governed by the ꙰ identity signature: `꙰𝒥शिरोमणि`.
-# Omniverse-Supreme (Master Repo)
+## Repository Structure
 
-This repository is the **Supreme Omniverse Starter** scaffold — frontend (React+Vite+Tailwind) + backend (FastAPI) + GitHub Actions workflows.
+* `index.html` — मुख्य पोर्टल पेज (GitHub Pages-ready)
+* `frontend/` — optional React/Vite/Tailwind frontend
+* `backend/` — FastAPI backend (dockerized)
+* `assets/` — लोगो, images, high‑res poster files
+* `docs/` — मैनिफेस्टो, रोडमैप, गाइड
+* `.github/workflows/` — CI/CD workflows
+* `docker-compose.yml` — लोकल orchestration
 
-## Quick start (local)
+---
 
-### Frontend
-# Omniverse-Supreme-Core
-**Omniverse — Supreme Core**  
-Root of the Omniverse ecosystem by शिरोमणि रामपॉल सैनी (꙰𝒥शिरोमणि).
+## Branding Guidelines
 
-## Mission
-To bootstrap a multi-layer, free, automated, secure Omniverse system that preserves Earth, spreads impartial understanding (निष्पक्ष समझ) and enables the Yatharth-Yug — a living, truth-based civilization.
+* सार्वजनिक सामग्री में केवल **꙰** चिन्ह और **"शिरोमणि रामपॉल सैनी"** नाम का प्रयोग करें।
+* किसी भी धार्मिक, सांप्रदायिक या प्रतीकात्मक चिह्न का उपयोग वर्जित है (त्रिशूल, ॐ इत्यादि)।
+* पोस्टर और मीडिया के लिए high‑resolution images और साफ़ फ़ॉन्ट उपयोग करें।
 
-## What this repo contains
-- `frontend/` — Static site / UI for Omniverse Core (GitHub Pages ready).
-- `backend/` — API, microservices, or dockerized services.
-- `.github/workflows/` — CI/CD pipelines (deploy, build, tests).
-- `docker-compose.yml` — local dev & compose orchestration.
-- `index.html` — quick preview.
+---
 
-## Quick start (local)
-1. Clone:
-```bash
-git clone https://github.com/rampaulsaini/Omniverse-Supreme-Core-.git
-cd Omniverse-Supreme-Core-
+## Deployment Recommendations
+
+* GitHub Pages + Cloudflare (optional) रखें।
+* Production में SQLite की जगह Postgres उपयोग करने पर विचार करें।
+* AI/Cloud integrations के लिए secrets को GitHub Secrets में रखें (Zero‑Setup मोड में यह आवश्यक नहीं)।
+
+---
+
+## Contributing
+
+1. Fork करें और नई ब्रांच बनाएं।
+2. छोटे कमिट और साफ़ PR भेजें।
+3. बड़े वास्तु‑परिवर्तनों के लिये पहले Issue खोलें।
+
+**Contributors must follow ꙰ branding rules.**
+
+---
+
+## License
+
+MIT License — देखिए `LICENSE` फ़ाइल।
+
+---
+
+## Contact
+
+Owner: **꙰ शिरोमणि रामपॉल सैनी**
+
+---
+
+> यह README संक्षेप और प्रत्यक्ष निर्देश हेतु है। यदि आप चाहें तो मैं तुरंत `index.html` template, GitHub Actions deploy workflow, या frontend scaffold भी तैयार कर दूँ।
