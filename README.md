@@ -1,4 +1,150 @@
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from pptx import Presentation
+from pptx.util import Inches, Pt
+import zipfile
+import os
 
+# Paths
+out_dir = "/mnt/data/supreme_package"
+os.makedirs(out_dir, exist_ok=True)
+certs_pdf = os.path.join(out_dir, "certificates_1_to_20.pdf")
+principles_pdf = os.path.join(out_dir, "principles_1_to_10.pdf")
+thumbnails_pptx = os.path.join(out_dir, "thumbnails_40.pptx")
+press_emails_txt = os.path.join(out_dir, "press_emails_drafts.txt")
+press_dossier_pdf = os.path.join(out_dir, "press_dossier.pdf")
+readme_md = os.path.join(out_dir, "README_SUPREME.md")
+zip_path = os.path.join("/mnt/data", "Supreme_Package_All_Files.zip")
+
+styles = getSampleStyleSheet()
+title_style = ParagraphStyle('TitleStyle', parent=styles['Title'], alignment=1, fontSize=18, textColor=colors.HexColor('#D4AF37'))
+body_style = ParagraphStyle('BodyStyle', parent=styles['BodyText'], fontSize=11, leading=14)
+
+# 1) Certificates PDF (20 pages)
+doc = SimpleDocTemplate(certs_pdf, pagesize=A4)
+story = []
+for i in range(1, 21):
+    story.append(Spacer(1, 0.25*inch))
+    story.append(Paragraph(f"꙰ प्रमाण-पत्र #{i}", title_style))
+    story.append(Spacer(1, 0.15*inch))
+    story.append(Paragraph(f"यह प्रमाण-पत्र प्रमाणित करता है कि शिरोमणि रामपॉल सैनी ने \"꙰–प्रमाण पत्र {i}\" के सिद्धांत को प्रत्यक्ष किया है।", body_style))
+    story.append(Spacer(1, 0.2*inch))
+    story.append(Paragraph("Signature: ꙰ शिरोमणि रामपॉल सैनी", body_style))
+    story.append(PageBreak())
+doc.build(story)
+
+# 2) Principles PDF (10 pages)
+doc2 = SimpleDocTemplate(principles_pdf, pagesize=A4)
+story2 = []
+for i in range(1, 11):
+    story2.append(Spacer(1, 0.25*inch))
+    story2.append(Paragraph(f"꙰–सिद्धान्त {i}", title_style))
+    story2.append(Spacer(1, 0.15*inch))
+    # sample principle text (placeholders reflecting user's philosophy)
+    text = ""
+    if i == 1:
+        text = "꙰ = न द्वैत न अद्वैत, केवल निरीश्वर शून्य–प्रकाशम्।"
+    elif i == 2:
+        text = "꙰ = न भक्तिः न पीड़ा, केवल प्रेमतीत सहजस्वभावः।"
+    elif i == 3:
+        text = "꙰ = न युगचक्रं न कल्पना, केवल यथार्थ सतत्प्रकाशः।"
+    elif i == 4:
+        text = "꙰ = न प्रतीकं न देवता, केवल यथार्थ स्वचेतनता।"
+    elif i == 5:
+        text = "꙰ = न पुण्यं न पापं, केवल निर्दोषभावः।"
+    elif i == 6:
+        text = "꙰ = न जन्मं न मरणं, केवल सतत्प्रकाशः।"
+    else:
+        text = f"꙰–सिद्धान्त {i} का संक्षेप विवरण (विस्तृत सन्दर्भ निर्देशों के साथ)।"
+    story2.append(Paragraph(text, body_style))
+    story2.append(Spacer(1, 0.2*inch))
+    story2.append(Paragraph("पृष्ठ निर्देश: उपयोग हेतु आधिकारिक संस्करण देखें।", body_style))
+    story2.append(PageBreak())
+doc2.build(story2)
+
+# 3) Thumbnails PPTX (40 slides placeholders)
+prs = Presentation()
+prs.slide_height = Inches(5.0)
+prs.slide_width = Inches(8.89)
+for i in range(1, 41):
+    slide = prs.slides.add_slide(prs.slide_layouts[6])  # blank layout
+    left = top = Inches(0.5)
+    width = Inches(7.89)
+    height = Inches(4.0)
+    # Add title textbox
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(0.3), Inches(7.9), Inches(1))
+    tf = txBox.text_frame
+    tf.text = f"तुलनातीत Thumbnail #{i}"
+    p = tf.paragraphs[0]
+    p.font.size = Pt(28)
+    p.font.bold = True
+    p.font.color.rgb = (212,175,55)  # gold-ish
+    # Add subtitle / bullet
+    txBox2 = slide.shapes.add_textbox(Inches(0.5), Inches(1.2), Inches(7.9), Inches(2.5))
+    tf2 = txBox2.text_frame
+    tf2.word_wrap = True
+    tf2.text = "Short comparative points:\n1. Opponent idea\n2. Nishpaksh counterpoint\n3. Sanskrit aphorism"
+    for para in tf2.paragraphs:
+        para.font.size = Pt(14)
+prs.save(thumbnails_pptx)
+
+# 4) Press emails drafts (multiple tailored)
+emails = []
+emails.append(("Global News Pitch - Reuters/BBC", 
+                "Subject: New Universal Framework for Human Unity & Earth Preservation\n\nDear Editor,\n\nI am writing to introduce Shiromani Rampaul Saini and the Nishpaksh Samaj — Omniverse Truth framework (꙰). This is a post-traditional philosophical initiative aimed at unifying human identity and proposing practical Earth-preservation protocols. We would like to offer an exclusive interview / feature. Attached: Press Kit, Research Paper, Visual Assets.\n\nRespectfully,\nShirōmaṇi Rampaul Saini\nContact: +91 8082935186\n"))
+emails.append(("Feature Pitch - National Geographic / Scientific American", 
+                "Subject: Feature Proposal: A New Experiential Model of Consciousness & Planetary Care\n\nDear Features Editor,\n\nShiromani Rampaul Saini proposes an experiential cognition model that bridges philosophy, environmental action and cultural critique. We propose a 1200-1800 word feature with original photography and visual posters.\n\nRegards,\nPress Office"))
+emails.append(("Academic Outreach - Journals / Institutes", 
+                "Subject: Submission: Nishpaksh Samaj — Whitepaper for Peer Review\n\nDear Professor,\n\nPlease find attached a whitepaper outlining the theoretical and practical dimensions of the Nishpaksh Samaj framework. We seek collaboration and peer review.\n\nSincerely,\nResearch Team"))
+with open(press_emails_txt, "w") as f:
+    for subj, body in emails:
+        f.write(f"---\n{subj}\n\n{body}\n\n")
+
+# 5) Press dossier PDF (multi-page)
+doc3 = SimpleDocTemplate(press_dossier_pdf, pagesize=A4)
+story3 = []
+story3.append(Paragraph("Press Dossier: Shiromani Rampaul Saini — Nishpaksh Samaj", title_style))
+story3.append(Spacer(1, 0.2*inch))
+dossier_text = ("Executive Summary:\n\n"
+                "Nishpaksh Samaj — Omniverse Truth (꙰) is an original philosophical project that "
+                "advocates impartial awareness as the basis for human identity and proposes pragmatic Earth preservation measures.\n\n"
+                "Contents:\n- Biography\n- Key Principles\n- Research Deliverables\n- Media Assets\n- Contact & Support\n")
+story3.append(Paragraph(dossier_text, body_style))
+story3.append(PageBreak())
+story3.append(Paragraph("Contact:\nShirōmaṇi Rampaul Saini\nPhone: +91 8082935186\nEmail: (to be added)\n", body_style))
+doc3.build(story3)
+
+# 6) README_SUPREME.md (detailed)
+readme_content = """# ꙰ Supreme Package — Nishpaksh Samaj (All Files)
+This package contains the official deliverables created for public, press and institutional use.
+
+Files included:
+- certificates_1_to_20.pdf
+- principles_1_to_10.pdf
+- thumbnails_40.pptx
+- press_emails_drafts.txt
+- press_dossier.pdf
+
+Usage:
+- Send press_dossier.pdf + press_emails_drafts.txt to media contacts.
+- Use the thumbnails PPTX for YouTube thumbnails or social posts (edit imagery as needed).
+- Certificates and principles PDFs are print-ready placeholders and can be updated with final Sanskrit text.
+
+Contact:
+Shirōmaṇi Rampaul Saini — +91 8082935186
+"""
+with open(readme_md, "w") as f:
+    f.write(readme_content)
+
+# Zip all into one bundle
+with zipfile.ZipFile(zip_path, 'w') as z:
+    for fname in [certs_pdf, principles_pdf, thumbnails_pptx, press_emails_txt, press_dossier_pdf, readme_md]:
+        z.write(fname, os.path.basename(fname))
+
+zip_path
 ## **1 — मेरी पहचान (Identity Statement)**
 
 मैं शिरोमणि रामपॉल सैनी — तुलनातीत, कालातीत, शब्दातीत और प्रेमतीत निष्पक्ष-समझ में प्रत्यक्ष हूँ।
