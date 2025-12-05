@@ -1,4 +1,190 @@
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
+
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>꙰ Nishpaksh Samaj — Omniverse Truth — शिरोमणि रामपॉल सैनी</title>
+  <meta name="description" content="निष्पक्ष समझ — 0.0001% सूत्र, यथार्थ युग, तुलनातीत कालातीत शब्दातीत दर्शन" />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    /* Black + Gold Hybrid Theme — single-file CSS */
+    :root{--bg:#05060a;--panel:#0b0f14;--muted:#bfc7d0;--gold:#ffcf4d;--glass:rgba(255,255,255,0.03);--accent:#ffd966}
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, 'Noto Sans', Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;background:linear-gradient(180deg,#03040a 0%,#071025 60%,#071229 100%);color:#e9eef6;line-height:1.6}
+    .wrap{max-width:1100px;margin:28px auto;padding:26px}
+    header{display:flex;gap:16px;align-items:center}
+    .brand{font-size:22px;font-weight:800;color:var(--gold);letter-spacing:0.6px}
+    .sub{color:var(--muted);font-size:13px}
+    nav{margin-left:auto}
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:700}
+    .hero{display:flex;gap:20px;align-items:flex-start;margin-top:22px}
+    .left{flex:1;padding:24px;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{margin:0;font-size:30px}
+    .lead{color:var(--muted);margin-top:10px}
+    .cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--gold);color:#071026;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,217,102,0.08);color:var(--gold)}
+    aside.right{width:320px;padding:18px;border-radius:12px;background:var(--glass);text-align:center}
+    img.author{width:100%;border-radius:8px;object-fit:cover;max-height:180px}
+    .section{margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:14px;border-radius:10px}
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .manifesto{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:10px}
+    .philosophy h3{color:var(--gold);margin:10px 0}
+    blockquote{border-left:3px solid rgba(255,207,77,0.12);padding-left:12px;color:var(--muted);margin:12px 0}
+    pre.eq{background:rgba(0,0,0,0.25);padding:12px;border-radius:8px;color:var(--gold);overflow:auto}
+    footer{margin-top:40px;padding:18px;text-align:center;color:var(--muted);font-size:13px}
+    .compare{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .cmp-card{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px}
+    @media (max-width:920px){.hero{flex-direction:column}.two-col{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="brand">꙰ Nishpaksh Samaj</div>
+        <div class="sub">तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत — शिरोमणि रामपॉल सैनी</div>
+      </div>
+      <nav>
+        <a href="#philosophy">सिद्धांत</a>
+        <a href="#compare">तुलना</a>
+        <a href="#practice">प्रैक्टिस</a>
+        <a href="#manifesto">घोषणा</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="left">
+        <h1>꙰ — निष्पक्ष समझ: 0.0001% जो संपूर्णता बन जाती है</h1>
+        <p class="lead">मैं शिरोमणि रामपॉल सैनी — निष्पक्ष समझ का प्रत्यक्ष समक्ष रूप। यह पृष्ठ मेरे सिद्धांत, तुलना, तर्क, और व्यवहारिक अभ्यास का समग्र संग्रह है।</p>
+        <div class="cta">
+          <a class="btn" href="#philosophy">पूरा सिद्धांत पढ़ें</a>
+          <a class="btn ghost" href="#practice">अभ्यास करें</a>
+          <a class="btn ghost" href="#manifesto">घोषणा पढ़ें</a>
+        </div>
+      </div>
+
+      <aside class="right">
+        <img class="author" src="assets/profile.jpg" alt="शिरोमणि रामपॉल सैनी"/>
+        <h3 style="margin:10px 0 4px 0">शिरोमणि रामपॉल सैनी</h3>
+        <div style="color:var(--muted);font-size:13px">तुलनातीत · कालातीत · शब्दातीत</div>
+        <div style="margin-top:12px"><a class="btn" href="#contact">संपर्क</a></div>
+      </aside>
+    </section>
+
+    <section id="philosophy" class="section philosophy">
+      <h2>सिद्धांत — मूल तत्व</h2>
+      <div class="manifesto">
+        <h3>1. परिभाषा</h3>
+        <p>समस्त अनन्त भौतिक सृष्टि में प्रत्येक जीव का 'मनसिकता' नामक 99.999% हिस्सा है — यही स्मृति-कोष, बुद्धि, पहचान, भय और लालच का स्रोत है। ये सभी बिंदु जीवन-व्यापन के लिए उपयोगी हैं पर सत्य की खोज में बाधा डालते हैं।</p>
+
+        <h3>2. 0.0001% — निष्पक्ष समझ</h3>
+        <p>0.0001% वह सूक्ष्म-अवस्था है जो स्मृति-रहित, शब्द-रहित, काल-रहित प्रत्यक्ष अनुभव देती है। यही वह शाश्वत स्वाभाविक सत्य है जो संपूर्णता का अहसास कराती है।</p>
+
+        <h3>3. सूत्र (Symbolic)</h3>
+        <pre class="eq">99.999% = मन/बुद्धि (M)
+0.0001%  = निष्पक्ष समझ (N)
+यदि N &gt; 0 → संपूर्णता (S) ≈ 100%</pre>
+
+        <blockquote>"निष्पक्ष समझ कोई विचार नहीं; वह विचारों के न होने का प्रत्यक्ष प्रकाश है।"</blockquote>
+
+        <h3>4. अस्तित्व बनाम सत्य</h3>
+        <p>अस्तित्व = मानसिकता। शाश्वत सत्य अस्तित्व में नहीं ठहर सकता क्योंकि अस्तित्व शब्द, समय और पहचान का ढांचा है। सत्य केवल अस्तित्व-विरहित सूक्ष्म-अक्ष में प्रत्यक्ष होता है।</p>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <h2>तुलना — अतीत के महान दार्शनिकों/वैज्ञानिकों से</h2>
+      <div class="compare">
+        <div class="cmp-card">
+          <h4>बुद्ध</h4>
+          <p>बुद्ध ने तृष्णा का निदान किया — मुक्ति के लिए मन का संशोधन। परंतु उनका निर्वाण भी मन-के-सन्निकट था। मेरा निष्कर्ष: मन का पूर्ण नाश ही शाश्वत शैली है।</p>
+        </div>
+
+        <div class="cmp-card">
+          <h4>शंकराचार्य</h4>
+          <p>अद्वैत में जगत् को मिथ्या कहा गया। पर वह भी एक वैचारिकी है। ꙰ में वैचारिक हीन प्रत्यक्षता है—शब्द से परे।</p>
+        </div>
+
+        <div class="cmp-card">
+          <h4>जे. कृष्णमूर्ति</h4>
+          <p>प्राधिकरण का खंडन — आपने भी कहा। पर स्वयं को जानने का प्रयास भी मन का ही खेल बन सकता है। ꙰ में 'जानने' की क्रिया भी फिसल जाती है।</p>
+        </div>
+
+        <div class="cmp-card">
+          <h4>आइंस्टाइन / क्वांटम</h4>
+          <p>भौतिकी ने observer effect दिखाया पर हमने observer भी मन का उपकरण माना। ꙰ observer और observed दोनों से परे है।</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="card">
+        <h3>तार्किक सार</h3>
+        <p>इतिहास के दार्शनिकों ने मन की सीमाओं को पहचाना पर कोई भी पूर्णतः मन से मुक्त नहीं हुआ। मेरा दावा इसीलिए तुलनातीत: मैंने मन से मुक्त प्रत्यक्षता का अनुभव और उसका दर्शन दिया है।</p>
+      </div>
+    </section>
+
+    <section id="practice" class="section">
+      <h2>प्रैक्टिस — 0.0001% तक पहुँचने के व्यावहारिक निर्देश</h2>
+      <div class="two-col">
+        <div>
+          <h3>दैनिक (Daily)</h3>
+          <ul>
+            <li><strong>Micro-silence:</strong> प्रतिदिन 10×1 मिनट — बिना विचार के निरीक्षण।</li>
+            <li><strong>Presence-in-action:</strong> सामान्य क्रियाओं में पूर्ण उपस्थिति — केवल निरीक्षक बने रहें।</li>
+            <li><strong>Memory-reduction:</strong> दिनचर्या में स्मृति-निरपेक्षता का अभ्यास करें।</li>
+          </ul>
+
+          <h3>उन्नत (Advanced)</h3>
+          <ul>
+            <li><strong>शून्य-विकल्प ध्यान:</strong> किसी विषय को न चुनकर केवल प्रत्यक्ष अवलोकन।</li>
+            <li><strong>अनुभव-डिटैचमेंट:</strong> अनुभव के तुरंत बाद न लिखें; 24 घंटे बाद समीक्षा करें।</li>
+          </ul>
+        </div>
+
+        <aside class="right card">
+          <h4>प्रैक्टिकल नोट</h4>
+          <p style="color:var(--muted)">ये अभ्यास मन के जटिल कार्यों को कमजोर कर के, क्षणिक रूप से उस 0.0001% का प्रवेश सम्भव करते हैं। नियमितता और सादगी आवश्यक है।</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="manifesto" class="section">
+      <h2>यथार्थ युग — घोषणापत्र</h2>
+      <div class="manifesto">
+        <p>त्रेता, द्वापर, कलियुग — ये सब मनसिकता पर आधारित युग थे। अब यथार्थ युग प्रारम्भ हुआ है — जहाँ निष्पक्ष समझ को प्राथमिकता दी जायेगी। यह युग तर्क, प्रत्यक्षता और अस्तित्व-विरहित अनुभव का युग है।</p>
+
+        <h3>मुख्य घोषणा</h3>
+        <ol>
+          <li>निष्पक्ष समझ (0.0001%) = प्रथम सिद्धांत।</li>
+          <li>गुरु-शिष्य परंपरा पर तर्क-आधारित पुनर्विचार आवश्यक।</li>
+          <li>मानव और अन्य प्रजातियों के लिए समतुल्य अधिकार।</li>
+        </ol>
+
+        <blockquote>"मैं शिरोमणि रामपॉल सैनी — तुलनातीत कालातीत शब्दातीत प्रेमतीत — इस यथार्थ युग का प्रत्यक्ष स्वरूप हूँ।"</blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>संपर्क / योगदान</h2>
+      <div class="manifesto">
+        <p style="color:var(--muted)">यदि आप इस सिद्धांत का विस्तार, प्रिंट, पोस्टर या सहयोग चाहते हैं तो नीचे दिए गए माध्यमों से संपर्क करें।</p>
+        <ul style="color:var(--muted)">
+          <li>UPI: <code>sainirampaul90-1@okhdfcbank</code></li>
+          <li>Phone / WhatsApp: <code>+91 80829 35186</code></li>
+          <li>Telegram: <a href="https://t.me/sampaulsaini" style="color:var(--gold)">t.me/sampaulsaini</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      © <strong>꙰ Nishpaksh Samaj — शिरोमणि रामपॉल सैनी</strong> · All rights reserved · Designed for GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import inch
