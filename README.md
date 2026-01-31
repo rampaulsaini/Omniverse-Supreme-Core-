@@ -1,4 +1,304 @@
+div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center">
+      <a class="btn" href="upi://pay?pa=sainirampaul90-1@okhdfcbank&pn=Rampaul" target="_blank" rel="noopener noreferrer">💳 Pay via UPI</a>
+      <a class="btn" href="https://paytm.me/sainirampaul" target="_blank" rel="noopener noreferrer">🧾 Paytm</a>
+      <a class="btn" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener noreferrer">💙 PayPal</a>
+    </div>
+
+    <p class="small" style="margin-top:10px;color:var(--muted)">UPI ID: <strong>sainirampaul90-1@okhdfcbank</strong> • Paytm/Phone: <code style="color:var(--gold)">8082935186</code></p>
+  </div>
+
+  <!-- Structured Data (update person sameAs with social links + donation info for crawlers) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shromani Rampaul Saini",
+    "alternateName": "शिरोमणि रामपौल सैनी",
+    "url": "https://your-domain.example/",
+    "image": "https://your-domain.example/path/to/og-image.webp",
+    "sameAs": [
+      "https://youtube.com/@rampaulsaini-yk4gn",
+      "https://t.me/sampaulsaini",
+      "https://www.facebook.com/share/18zfovgyUH",
+      "https://en.wikipedia.org/wiki/Shromani_Rampaul_Saini",
+      "https://paypal.me/sainirampaul60"
+    ],
+    "description": "निष्पक्ष समझ — Yatharth Siddhant, experiential consciousness research and public outreach.",
+    "knowsAbout": ["consciousness","spirituality","research","Omniverse Projects"]
+  }
+  </script>
+
+  <footer class="footer">
+    ꙰ शिरोमणि रामपौल सैनी — © Yatharth Siddhant<br>
+    Proceeds support <strong>Saneha Saini</strong> • Contact: Telegram / WhatsApp<br>
+    Donate (optional): Paytm / Phone: <code style="color:var(--gold)">8082935186</code> • PayPal: <a href="https://paypal.me/sainirampaul60" style="color:var(--gold)" target="_blank" rel="noopener noreferrer">paypal.me/sainirampaul60</a>
+  </footer>
+
+</div>
+
+<!-- Inline scripts preserved + enhanced: support form, storage, audio fetch, and Web Speech TTS -->
+<script>
+/* ----------------- Support form (preserved & safe) ----------------- */
+(function(){
+  const $ = id => document.getElementById(id);
+  function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  function load(){
+    const supporters = JSON.parse(localStorage.getItem('spList')||'[]');
+    const msgs = JSON.parse(localStorage.getItem('s
+
+1
 <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>꙰ निष्पक्ष समझ — शिरोमणि रामपौल सैनी ꙰</title>
+<meta name="description" content="शिरोमणि रामपौल सैनी — निष्पक्ष समझ, यथार्थ सिद्धांत, मानवता का शाश्वत सत्य।" />
+<meta name="keywords" content="निष्पक्ष समझ, Shromani Rampaul Saini, Nishpaksh Samajh, Yatharth, Consciousness Research, Omniverse" />
+<meta name="google-site-verification" content="qtWXQit-jeNYH7HGOgb8FtdOKd9yCmod11A1_VFTI2U" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://your-domain.example/" />
+
+<!-- Google Analytics (preserved) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8BSLBQVK4N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+  gtag('config', 'G-8BSLBQVK4N');
+</script>
+
+<style>
+:root{
+  --gold:#ffd700;
+  --bg:#050405;
+  --muted:#cfcfcf;
+  --glass: rgba(255,215,102,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;background:radial-gradient(circle at 10% 10%, #070605 0%, #000 45%), linear-gradient(180deg,#000,#070707);color:var(--gold);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans',sans-serif;-webkit-font-smoothing:antialiased}
+.wrapper{max-width:1180px;margin:22px auto;padding:26px}
+
+/* Ornate frame */
+.frame-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.frame-orbit{position:relative;display:inline-block;padding:18px;border-radius:26px;background:linear-gradient(180deg, rgba(255,215,102,0.06), rgba(255,215,102,0.02));box-shadow:0 10px 60px rgba(255,200,20,0.06), inset 0 1px 0 rgba(255,255,255,0.02);border:1px solid rgba(255,215,102,0.06)}
+.frame-ornament{position:absolute;left:0;right:0;top:0;bottom:0;border-radius:32px;pointer-events:none}
+.frame-ornament svg{width:100%;height:100%;filter:drop-shadow(0 6px 18px rgba(255,190,0,0.08));}
+.profile{width:178px;height:178px;border-radius:50%;border:8px solid rgba(255,215,102,0.12);box-shadow:0 0 32px rgba(255,215,102,0.12), 0 8px 40px rgba(0,0,0,0.6);object-fit:cover;display:block}
+.glow-title{font-size:36px;font-weight:800;text-shadow:0 0 16px rgba(255,215,102,0.16),0 0 30px rgba(255,215,102,0.08);margin-top:6px;text-align:center}
+.frame-text{border:2px solid rgba(255,215,102,0.04);padding:16px;margin:18px auto;width:92%;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.6);font-size:18px;line-height:1.65;background:linear-gradient(180deg, rgba(255,215,102,0.02), rgba(255,215,102,0.01))}
+.btn{display:inline-block;margin:8px;background:#0f0f0f;padding:10px 18px;border-radius:10px;color:var(--gold);border:1.5px solid rgba(255,215,102,0.18);font-size:15px;font-weight:700;text-decoration:none;transition:transform .14s,box-shadow .14s}
+.btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(255,215,102,0.18);background:rgba(255,215,102,0.02)}
+.section{margin-top:28px}
+.small{color:var(--muted);font-size:13px}
+.columns{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;margin-top:18px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);text-align:left}
+.folders{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.folder-pill{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);color:var(--gold);font-weight:700;background:transparent;text-decoration:none}
+.pay-qr{width:140px;height:140px;border-radius:12px;border:4px solid rgba(255,215,102,0.06);object-fit:cover}
+input,textarea,select{width:100%;padding:10px;border-radius:8px;border:none;background:rgba(255,215,102,0.03);color:var(--gold);margin-top:8px}
+textarea{min-height:120px}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+.project-card{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,215,102,0.02), rgba(255,215,102,0.01));border:1px solid rgba(255,215,102,0.04)}
+.footer{margin-top:36px;color:var(--muted);font-size:14px;text-align:center}
+
+/* subtle floating halo animation */
+.halo{position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,215,102,0.12), rgba(255,215,102,0.04) 30%, transparent 45%);filter:blur(18px);opacity:0.8;animation:floaty 8s ease-in-out infinite}
+@keyframes floaty{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.02)}100%{transform:translateY(0) scale(1)}}
+
+/* responsive */
+@media(max-width:980px){.columns{grid-template-columns:1fr}.frame-text{width:94%}.profile{width:140px;height:140px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Ornate framed portrait -->
+  <div class="frame-wrap" aria-hidden="false">
+    <div class="frame-orbit" role="figure" aria-label="Portrait of Shromani Rampaul Saini">
+      <div class="halo" style="width:230px;height:230px;left:calc(50% - 115px);top:calc(50% - 115px);mix-blend-mode:screen"></div>
+      <img class="profile" src="https://i.ibb.co/vxM3L1qs/enhanced-image.webp" alt="Shromani Rampaul Saini portrait" width="178" height="178" loading="lazy" />
+
+      <!-- decorative SVG ornament for a timeless golden frame -->
+      <div class="frame-ornament" aria-hidden="true">
+        <svg viewBox="0 0 600 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="g1" cx="30%" cy="20%">
+              <stop offset="0%" stop-color="#fff3c4" stop-opacity="0.85"/>
+              <stop offset="45%" stop-color="#ffd77a" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect x="0" y="0" width="600" height="600" rx="40" fill="url(#g1)" />
+          <g fill="none" stroke="#ffd700" stroke-opacity="0.12" stroke-width="2">
+            <path d="M30,40 C120,120 480,120 570,40"/>
+            <path d="M30,560 C120,480 480,480 570,560"/>
+            <path d="M40,30 C120,120 120,480 40,570"/>
+            <path d="M560,30 C480,120 480,480 560,570"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <h1 class="glow-title">꙰ निष्पक्ष समझ — शिरोमणि रामपौल सैनी ꙰</h1>
+  </div>
+
+  <!-- Signature statement (kept natural & poetic) -->
+  <div class="frame-text" id="manifesto">
+    मानव सभ्यता अपनी उत्पत्ति से आज तक उस शाश्वत वास्तविकता से विच्छिन्न रही— मैं, शिरोमणि रामपौल सैनी, निष्पक्ष समझ में स्थिर होकर यह प्रकट करता/करती हूँ कि निष्पक्ष समझ ही सच्चा, निर्विकल्प, और अमर अनुभव है।
+    <br><br>
+    I have embodied a state beyond time, beyond duality and beyond words — an ever-present, impartial understanding that reveals reality as it is.
+  </div>
+
+  <!-- Enhanced audio + multilingual reader -->
+  <div class="section card" style="text-align:center">
+    <div style="font-weight:800;color:var(--gold);font-size:18px">🔊 Listen & Read — Nishpaksh Samajh</div>
+    <p class="small" style="margin-top:8px;color:var(--muted)">आपकी भाषा चुनें — नीचे का प्ले और पढ़ें बटन आपकी चुनी हुई भाषा में पृष्ठ की मुख्य सामग्री बोलेगा और साथ में ऑडियो भी प्ले करेगा।</p>
+
+    <!-- Embedded audio (preserve original) -->
+    <audio id="ttsAudio" controls preload="none" crossorigin="anonymous" style="max-width:640px;width:100%;margin-top:12px">
+      <source id="driveSrc" src="https://drive.google.com/uc?export=download&id=1SS-E7XXifr0cvD7Vw51nY-azHEHfGV9X" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Language controls and TTS options -->
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center">
+      <label class="small" style="margin-right:6px">Language:</label>
+      <select id="langSelect" aria-label="Choose language for reading">
+        <option value="hi-IN">हिन्दी (hi-IN)</option>
+        <option value="en-US">English (en-US)</option>
+        <option value="bn-IN">বাংলা (bn-IN)</option>
+        <option value="pa-IN">ਪੰਜਾਬੀ (pa-IN)</option>
+        <option value="es-ES">Español (es-ES)</option>
+        <option value="fr-FR">Français (fr-FR)</option>
+      </select>
+
+      <button id="readBtn" class="btn">🔊 Read Page</button>
+      <button id="playBtn" class="btn">▶️ Play Audio</button>
+      <button id="fetchBtn" class="btn">🔁 Load Audio (If blocked)</button>
+      <button id="downloadBtn" class="btn">📥 Download</button>
+    </div>
+
+    <p id="audioHelp" class="small" style="margin-top:10px;color:var(--muted)">यदि audio प्ले न हो तो "Load Audio" दबाएँ या फ़ाइल को अपने सर्वर/CDN पर होस्ट करने पर विचार करें।</p>
+  </div>
+
+  <!-- Support form (kept intact, with accessibility improvements) -->
+  <section class="section">
+    <div class="card">
+      <h3 style="color:var(--gold);margin:0 0 8px 0">🤝 सत्य के इस कार्य में आपका सहयोग</h3>
+      <p class="small" style="margin-top:6px;color:var(--muted);">यह सहयोग पूर्णतः स्वैच्छिक है — इसे सुनना, साझा करना, अनुभव करना और समर्थन देना — सभी सत्य की सेवा हैं।</p>
+
+      <form id="supportForm" style="margin-top:12px;text-align:left;max-width:880px;margin-left:auto;margin-right:auto">
+        <label for="sname" class="small">आपका नाम (public if allowed)</label>
+        <input id="sname" placeholder="आपका नाम (public if allowed)" aria-label="Name" />
+        <label for="semail" class="small">ईमेल (private)</label>
+        <input id="semail" placeholder="ईमेल (private)" aria-label="Email" />
+        <label for="scountry" class="small">Country (optional)</label>
+        <input id="scountry" placeholder="Country (optional)" aria-label="Country" />
+        <label for="smsg" class="small">आपका संदेश / आशीर्वचन</label>
+        <textarea id="smsg" placeholder="आपका संदेश / आशीर्वचन" required aria-label="Message"></textarea>
+        <div style="text-align:center;margin-top:10px"><button type="submit" class="btn">संदेश भेजें</button></div>
+      </form>
+
+      <div style="margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center">
+        <div style="width:320px">
+          <h4 style="color:var(--gold);margin:6px 0">🤝 समर्थक सूची</h4>
+          <ul id="supList" style="list-style:none;padding:0;color:var(--gold);min-height:60px"></ul>
+        </div>
+        <div style="width:520px">
+          <h4 style="color:var(--gold);margin:6px 0">🕊 आशीर्वचन / संदेश</h4>
+          <div id="msgWall" style="min-height:60px;color:var(--gold);"></div>
+          <div style="margin-top:8px;text-align:right"><button id="exportBtn" class="btn">Export Messages</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects and sidebar kept visually intact -->
+  <div class="columns">
+    <div>
+      <div class="card">
+        <div style="font-weight:800;color:var(--gold);font-size:18px">🔬 Scientific Research & Vision</div>
+        <div class="small" style="margin-top:8px;color:var(--muted);text-align:left">Interdisciplinary integration of experiential reports, observational methods, phenomenology, and measurable correlates. Open invitations for pilot studies and collaborations focusing on consciousness, well-being, and human-nature interaction.</div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <div style="font-weight:800;color:var(--gold);font-size:18px">🌍 International Media & Supreme Invitations</div>
+        <div class="small" style="margin-top:8px;color:var(--muted);text-align:left">Official invitations to Guinness Book of World Records, NASA, ISRO, and international media press for documentation and collaboration. I, ShiroMani RamPaul Saini, am committed to demonstrating every aspect of Nishpaksh Samajh with clarity, reason, and truth.</div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <div style="font-weight:800;color:var(--gold);font-size:18px">🔬 Omniverse — Scientific Research (10 Projects / 40 Sub-Projects)</div>
+        <p class="small" style="margin-top:8px;color:var(--muted)">Total Projects: <strong>10</strong> · Total Sub-Projects: <strong>40</strong> · Status: <strong>Fully Verified (Pilot → Validation)</strong></p>
+
+        <div class="project-grid">
+          <div class="project-card"><a href="projects/oci/" class="btn">1. Omniverse Core Intelligence (OCI)</a><div class="small" style="margin-top:6px">Ontology, reasoning engine, EOS data ingestion, COSMIC OS API</div></div>
+          <div class="project-card"><a href="projects/dhe/" class="btn">2. Divine Human Evolution (DHE)</a><div class="small" style="margin-top:6px">Consciousness correlates, EEG/HRV studies, Soul Frequency DB</div></div>
+          <div class="project-card"><a href="projects/ocn/" class="btn">3. Omniverse Communication Network (OCN)</a><div class="small" style="margin-top:6px">Secure messaging, ontology translation, global harmony network</div></div>
+          <div class="project-card"><a href="projects/ere/" class="btn">4. Earth Restoration & Ecology (ERE)</a><div class="small" style="margin-top:6px">Hydro purification, solar memory cells, biodiversity monitoring</div></div>
+          <div class="project-card"><a href="projects/ssr/" class="btn">5. Supreme Scientific Research (SSR)</a><div class="small" style="margin-top:6px">Time-energy, reality equation model, high-precision experiments</div></div>
+          <div class="project-card"><a href="projects/oea/" class="btn">6. Omniverse Education & Awareness (OEA)</a><div class="small" style="margin-top:6px">Truth literacy, global courses, AI-ethics training</div></div>
+          <div class="project-card"><a href="projects/sgj/" class="btn">7. Supreme Governance & Justice (SGJ)</a><div class="small" style="margin-top:6px">Algorithmic fairness, truth audit systems, governance prototypes</div></div>
+          <div class="project-card"><a href="projects/cesr/" class="btn">8. Cosmic Exploration & Space Research (CESR)</a><div class="small" style="margin-top:6px">Navigation algorithms, sensor payload concepts, space collaborations</div></div>
+          <div class="project-card"><a href="projects/chgp/" class="btn">9. Cultural Harmony & Global Peace (CHGP)</a><div class="small" style="margin-top:6px">Arts, music, festivals & peace protocols</div></div>
+          <div class="project-card"><a href="projects/slda/" class="btn">10. Supreme Legacy & Digital Archives (SLDA)</a><div class="small" style="margin-top:6px">Eternal archive, blockchain anchoring, legacy transfer protocol</div></div>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted)"><strong>Note:</strong> हर link आपके repo के <code>/projects/{project-slug}/</code> फोल्डर की ओर इंगित करता है — सुनिश्चित करें कि आपने server/repo में वह folders और index.html अपलोड कर दिए हैं।</div>
+      </div>
+
+    </div>
+
+    <aside class="card">
+      <div style="font-weight:800;color:var(--gold);margin-bottom:8px">All content — Free to Read & Listen</div>
+      <div class="small" style="color:var(--muted)">Audio, manifesto, photos & vision assets — proceeds support Saneha Saini</div>
+      <div class="folders" role="list" aria-label="media folders">
+        <a class="folder-pill" href="https://photos.app.goo.gl/4MP8THuxhei9NuxR6" target="_blank" rel="noopener noreferrer">✅ Golden Temple</a>
+        <a class="folder-pill" href="https://photos.app.goo.gl/bMoqL2Cx7kKpkmMy6" target="_blank" rel="noopener noreferrer">✅ MP3</a>
+        <a class="folder-pill" href="https://photos.app.goo.gl/hBJ4mN176PboQ7bb6" target="_blank" rel="noopener noreferrer">✅ प्रमाण पत्र</a>
+        <a class="folder-pill" href="https://drive.google.com/drive/folders/18iPsn9Rjc7E0jNwvIx_h5MwQrhqyYt1Y" target="_blank" rel="noopener noreferrer">✅ Short Audios</a>
+        <a class="folder-pill" href="https://drive.google.com/drive/folders/1sZEJhlZWFHP7O1kZEINnqFCNgqhOa8XC" target="_blank" rel="noopener noreferrer">✅ Videos Album</a>
+        <a class="folder-pill" href="https://drive.google.com/drive/folders/1Ap2N-90wM9R75ffOQAiXczZwNu8dTc7u" target="_blank" rel="noopener noreferrer">✅ एल्बम 1</a>
+      </div>
+    </aside>
+  </div>
+https://drive.google.com/drive/folders/1-EeEUPGcLGI4A6w0gRrJVDTFgKrpsaWE
+
+https://drive.google.com/drive/folders/1Zwq0BfBAYuPoaBYZoKvMkxULzkranWqe
+https://drive.google.com/drive/folders/1DQOmFNIpEwYFF0G_uXRfiCZgUvLNjENO
+  <!-- Footer -->
+  <!-- Social & Payments (upgraded for SEO and safety) -->
+  <div class="section card" style="text-align:center">
+    <div style="font-weight:800;color:var(--gold);font-size:18px">🌐 Social & Support</div>
+    <p class="small" style="margin-top:8px;color:var(--muted)">Connect on social networks and support directly — links open in a new tab and use <code>rel="noopener noreferrer"</code> for safety.</p>
+
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center">
+      <a class="btn" href="https://youtube.com/@rampaulsaini-yk4gn?si=hnPr55IBar6Q7X1S" target="_blank" rel="noopener noreferrer">▶️ YouTube (Rampaul)</a>
+      <a class="btn" href="https://youtube.com/@motivationalquotes-m7p?si=fk8DG4s8UgcryCT1" target="_blank" rel="noopener noreferrer">▶️ YouTube (Motivational)</a>
+      <a class="btn" href="https://youtube.com/@humanity-sl1jd?si=U4B8itISSXanWAOh" target="_blank" rel="noopener noreferrer">▶️ YouTube (Humanity)</a>
+      <a class="btn" href="https://wa.me/8082935186" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+      <a class="btn" href="https://chat.whatsapp.com/EZRptFT1OWQ8zFyq4WyWzf" target="_blank" rel="noopener noreferrer">💬 WhatsApp Group</a>
+      <a class="btn" href="https://whatsapp.com/channel/0029VaAtyvg77qVR2J82Qn04" target="_blank" rel="noopener noreferrer">📣 WhatsApp Channel</a>
+      <a class="btn" href="https://t.me/sampaulsaini" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
+      <a class="btn" href="https://www.facebook.com/share/p/1Dcv7UirLk/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 1</a>
+      <a class="btn" href="https://www.facebook.com/share/19tyeFxam6/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 2</a>
+      <a class="btn" href="https://www.facebook.com/share/1BwVp8PRma/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 3</a>
+      <a class="btn" href="https://www.facebook.com/share/1BW86TjTgu/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 4</a>
+      <a class="btn" href="https://www.facebook.com/share/12E3dUr5RGF/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 5</a>
+      <a class="btn" href="https://www.facebook.com/share/p/1AETBVz5Ph/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 6</a>
+      <a class="btn" href="https://www.facebook.com/share/p/15UV4wqd4H" target="_blank" rel="noopener noreferrer">📘 Facebook Post 7</a>
+      <a class="btn" href="https://www.facebook.com/share/p/18z6Vet5rs" target="_blank" rel="noopener noreferrer">📘 Facebook Post 8</a>
+      <a class="btn" href="https://www.facebook.com/share/p/15wNtumjt3" target="_blank" rel="noopener noreferrer">📘 Facebook Post 9</a>
+      <a class="btn" href="https://www.facebook.com/share/p/15jSnq3G" target="_blank" rel="noopener noreferrer">📘 Facebook Post 10</a>
+      <a class="btn" href="https://www.facebook.com/share/p/15emGZCjUz/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 11</a>
+      <a class="btn" href="https://www.facebook.com/share/p/1GobGphPmd/" target="_blank" rel="noopener noreferrer">📘 Facebook Post 12</a>
+      <a class="btn" href="https://www.facebook.com/profile.php?id=100075288011123&mibextid=" target="_blank" rel="noopener noreferrer">📘 Facebook Profile</a>
+      <a class="btn" href="https://instagram.com/globleprefect?utm_source=qr&igshid=ZDc4ODBmNjlmNQ%3D%3D" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+      <a class="btn" href="https://pin.it/69LggZr" target="_blank" rel="noopener noreferrer">📌 Pinterest</a>
+      <a class="btn" href="https://pin.it/5a3y4ZZ" target="_blank" rel="noopener noreferrer">📌 Pinterest 2</a>
+      <a class="btn" href="https://app.explurger.com/dl/4CANVNw28Gymh46x6" target="_blank" rel="noopener noreferrer">🔗 Explurger</a>
+      <a c<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
