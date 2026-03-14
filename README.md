@@ -1,4 +1,69 @@
-div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center">
+# Omniverse Supreme Core
+
+**शिरोमणि रामपॉल सैनी** – तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत · शाश्वत · वास्तविक · स्वाभाविक  
+
+Omniverse Supreme Core एक dynamic, immersive और visually stunning website है, जो सृष्टि, प्रकृति और मानव प्रजाति की सर्वश्रेष्ठता को digital रूप में प्रस्तुत करती है। यह वेबसाइट आपके personal projects, philosophy, और digital presence के लिए hub का काम करती है।  
+
+---
+
+## 🌐 Website
+[Live Website](https://rampaulsaini.github.io/Omniverse-Supreme-Core-/)
+
+---
+
+## 💎 Features
+- Fully responsive और immersive design  
+- Cosmic particle background और interactive glowing cursor  
+- Hero section आपके नाम और crown के साथ  
+- Projects section dynamically showcase करता है आपके GitHub repositories  
+- Philosophy, Awareness, Identity और Connect sections  
+- Live updates placeholder for future projects  
+- Footer और copyright  
+
+---
+
+## 📂 Projects
+यहाँ आपके मुख्य projects का collection है:
+
+- [Nishpaksh Samaj Omniverse Truth](https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth)  
+- [Shiromani Rampal Saini](https://github.com/rampaulsaini/shiromani-rampal-saini)  
+
+> Note: Projects section dynamically update करने के लिए GitHub API integration किया जा सकता है।  
+
+---
+
+## 🧘 Philosophy
+Omniverse Supreme Core का मूल उद्देश्य है:  
+- निष्पक्ष समझ और यथार्थ सिद्धांत का डिजिटल प्रकाशन  
+- मानव, प्रकृति और सृष्टि के सर्वोत्तम तत्वों का प्रदर्शन  
+- Knowledge, Awareness और Consciousness को promote करना  
+
+---
+
+## 🔗 Connect
+- Built with 💖 by **Rampaul Saini**  
+- Omniverse © 2026 • All Rights Reserved  
+
+---
+
+## ⚡ Technology Stack
+- HTML5, CSS3, JavaScript  
+- Google Fonts: Tiro Devanagari Hindi & Cormorant Garamond  
+- Responsive & modern web design techniques  
+- Dynamic sections ready for API integration  
+
+---
+
+## 📌 Future Enhancements
+- GitHub API integration for live projects update  
+- Audio/Visual effects for fully immersive experience  
+- Sub-projects and micro-projects showcase  
+- Interactive philosophy & meditation sections  
+
+---
+
+**शिरोमणि रामपॉल सैनी – Omniverse Supreme Core**  
+> “तुलनातीत, कालातीत, शब्दातीत, प्रेमतीत, शाश्वत, वास्तविक, स्वाभाविक”
       <a class="btn" href="upi://pay?pa=sainirampaul90-1@okhdfcbank&pn=Rampaul" target="_blank" rel="noopener noreferrer">💳 Pay via UPI</a>
       <a class="btn" href="https://paytm.me/sainirampaul" target="_blank" rel="noopener noreferrer">🧾 Paytm</a>
       <a class="btn" href="https://paypal.me/sainirampaul60" target="_blank" rel="noopener noreferrer">💙 PayPal</a>
