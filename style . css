@@ -1,1 +1,14 @@
-
+{
+  "projects": [
+    {
+      "title": "Omniverse Core Intelligence",
+      "link": "https://rampaulsaini.github.io/Omniverse-Core-Intelligence/",
+      "description": "Ontology, reasoning engine..."
+    },
+    {
+      "title": "Divine Human Evolution",
+      "link": "https://rampaulsaini.github.io/Divine-Human-Evolution/",
+      "description": "Next level human evolution project..."
+    }
+  ]
+}
