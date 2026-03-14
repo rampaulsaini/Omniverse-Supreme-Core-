@@ -318,3 +318,29 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF‑8">
+<meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+<title>Omniverse Supreme Core</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="hero">
+  <h1>Omniverse Supreme Core</h1>
+  <p>All Projects • Live Updating • Unified Experience</p>
+</header>
+
+<nav id="mainNav"></nav>
+
+<section id="projects"></section>
+
+<footer>
+  <p>Omniverse © 2026 • Built by Rampaul Saini</p>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
