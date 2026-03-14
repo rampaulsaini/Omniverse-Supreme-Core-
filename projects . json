@@ -1,1 +1,14 @@
-
+{
+  "projects": [
+    {
+      "title": "Omniverse Core Intelligence (OCI)",
+      "link": "https://rampaulsaini.github.io/projects/oci/",
+      "description": "Ontology, reasoning engine..."
+    },
+    {
+      "title": "Divine Human Evolution (DHE)",
+      "link": "https://rampaulsaini.github.io/projects/dhe/"
+    },
+    ... others ...
+  ]
+}
