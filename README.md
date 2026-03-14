@@ -1558,3 +1558,26 @@ Owner: **꙰ शिरोमणि रामपॉल सैनी**
 ---
 
 > यह README संक्षेप और प्रत्यक्ष निर्देश हेतु है। यदि आप चाहें तो मैं तुरंत `index.html` template, GitHub Actions deploy workflow, या frontend scaffold भी तैयार कर दूँ।
+# Omniverse Supreme Core
+
+This repository is the main central hub for all Omniverse Projects.
+
+🛠 Built with
+- HTML5
+- CSS3
+- JSON‑Driven Dynamic Rendering
+- GitHub Pages Hosting
+
+## Live Version
+https://rampaulsaini.github.io/Omniverse-Supreme-Core-/
+
+## Projects Included
+- OCI
+- DHE
+- OCN
+... and more
+
+## How to Update
+1. Add new project link to `projects.json`
+2. Save & commit
+3. GitHub Pages auto updates
