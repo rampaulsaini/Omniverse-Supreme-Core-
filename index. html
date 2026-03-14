@@ -1,3 +1,167 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="शिरोमणि रामपॉल सैनी – सृष्टि का शिरोमणि, निष्पक्ष समझ, यथार्थ सिद्धांत">
+<title>Omniverse Supreme Core – शिरोमणि रामपॉल सैनी</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --f:#d4732a;--f2:#e8934a;--f3:#f5aa6a;
+  --g:#b8872e;--g2:#d4a84e;--g3:#edd06e;
+  --deep:#050403;--dark:#090604;--card:#130d07;--card2:#1a1108;
+  --b:rgba(180,130,46,0.15);--b2:rgba(212,115,42,0.32);--b3:rgba(237,208,110,0.38);
+  --tx:#eedfc5;--mu:#8a7a60;--mu2:#544838;--wh:#faf5ec;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--deep);color:var(--tx);font-family:'Tiro Devanagari Hindi',serif;overflow-x:hidden;cursor:none;font-size:17px;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.5;}
+
+/* Cursor */
+.cur{position:fixed;width:8px;height:8px;background:var(--g3);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s;}
+.cur-r{position:fixed;width:34px;height:34px;border:1px solid rgba(212,115,42,0.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .18s ease;}
+
+/* Navbar */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 44px;background:rgba(5,4,3,0.95);backdrop-filter:blur(22px);border-bottom:1px solid var(--b);}
+.nl{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nl img{width:36px;height:36px;border-radius:50%;border:1px solid var(--b2);object-fit:cover;object-position:top;}
+.nl-t{display:flex;flex-direction:column;}
+.nl-n{font-size:.85rem;color:var(--g2);letter-spacing:.5px;}
+.nl-s{font-size:.62rem;color:var(--mu);letter-spacing:2px;font-family:'Cormorant Garamond',serif;text-transform:uppercase;}
+.nm{display:flex;list-style:none;}
+.nm a{display:block;padding:0 13px;height:62px;line-height:62px;color:var(--mu);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;transition:color .3s;white-space:nowrap;}
+.nm a:hover{color:var(--g2);}
+.hm{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hm span{width:22px;height:1px;background:var(--mu);transition:all .3s;}
+.mob{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(5,4,3,.98);border-bottom:1px solid var(--b);z-index:999;}
+.mob.open{display:block;}
+.mob a{display:block;padding:14px 36px;color:var(--mu);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1rem;border-bottom:1px solid rgba(180,130,46,.05);transition:color .3s;}
+.mob a:hover{color:var(--g2);}
+
+/* Hero Section */
+#home{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 22px 100px;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(180,130,46,.08) 0%,transparent 70%),radial-gradient(ellipse 35% 25% at 50% 15%,rgba(212,115,42,.05) 0%,transparent 55%);pointer-events:none;}
+.rays{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:conic-gradient(from 180deg at 50% 0%,transparent 12deg,rgba(212,115,42,.013) 18deg,transparent 24deg);pointer-events:none;animation:raysAnim 20s ease-in-out infinite;}
+@keyframes raysAnim{0%,100%{opacity:.7;transform:translateX(-50%) rotate(0deg)}50%{opacity:1;transform:translateX(-50%) rotate(3deg)}}
+
+/* Hero text and image */
+.hn{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,7vw,5.2rem);font-weight:300;color:var(--wh);line-height:1.1;position:relative;z-index:2;margin-bottom:6px;}
+.hn em{font-style:italic;background:linear-gradient(135deg,var(--f2),var(--g3),var(--f2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite;}
+@keyframes shimmer{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+.ht{font-family:'Cormorant Garamond',serif;font-size:clamp(.85rem,1.9vw,1rem);color:var(--mu);letter-spacing:3.5px;text-transform:uppercase;position:relative;z-index:2;margin-bottom:28px;}
+.hi{width:185px;height:185px;border-radius:50%;object-fit:cover;object-position:top center;border:2.5px solid var(--f2);box-shadow:0 0 0 5px rgba(212,115,42,.1),0 0 60px rgba(212,115,42,.28),0 28px 80px rgba(0,0,0,.72);display:block;position:relative;z-index:1;animation:imgPulse 4s ease-in-out infinite;}
+@keyframes imgPulse{0%,100%{box-shadow:0 0 0 5px rgba(212,115,42,.1),0 0 60px rgba(212,115,42,.28),0 28px 80px rgba(0,0,0,.72)}50%{box-shadow:0 0 0 8px rgba(212,115,42,.15),0 0 90px rgba(212,115,42,.4),0 28px 80px rgba(0,0,0,.72)}}
+
+/* Sections */
+.sec{padding:96px 24px;max-width:1060px;margin:0 auto;}
+.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.8vw,2.7rem);font-weight:300;color:var(--wh);line-height:1.25;margin-bottom:14px;}
+.sp{font-size:1rem;color:var(--mu);line-height:2.1;margin-bottom:38px;max-width:660px;}
+
+/* Footer */
+footer{background:#030201;border-top:1px solid var(--b);padding:60px 24px 36px;text-align:center;color:var(--mu);}
+footer p{margin-bottom:10px;}
+
+/* Responsive */
+@media(max-width:960px){.nm{display:none;}.hm{display:flex;}}
+@media(max-width:640px){.sec{padding:62px 18px;}}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
+
+<!-- Navbar -->
+<nav>
+  <a class="nl" href="#home">
+    <img src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपॉल सैनी">
+    <div class="nl-t"><span class="nl-n">शिरोमणि रामपॉल सैनी</span><span class="nl-s">निष्पक्ष समझ · Yatharth Siddhant</span></div>
+  </a>
+  <ul class="nm">
+    <li><a href="#home">Home</a></li><li><a href="#projects">Projects</a></li>
+    <li><a href="#philosophy">सिद्धांत</a></li><li><a href="#connect">Connect</a></li>
+  </ul>
+  <button class="hm" id="hm"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob" id="mob">
+  <a href="#home">Home</a><a href="#projects">Projects</a>
+  <a href="#philosophy">सिद्धांत</a><a href="#connect">Connect</a>
+</div>
+
+<!-- Hero -->
+<section id="home">
+  <div class="hbg"></div>
+  <div class="rays"></div>
+  <img class="hi" src="https://i.ibb.co/xqf3kTPS/enhanced-image.webp" alt="शिरोमणि रामपॉल सैनी">
+  <h1 class="hn">शिरोमणि <em>रामपॉल सैनी</em></h1>
+  <p class="ht">तुलनातीत · कालातीत · शब्दातीत · प्रेमतीत · शाश्वत · वास्तविक · स्वाभाविक</p>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="sec">
+  <h2 class="sh">Omniverse Projects</h2>
+  <p class="sp" id="proj-msg">Loading projects...</p>
+  <div id="projects-container"></div>
+</section>
+
+<!-- Philosophy -->
+<section id="philosophy" class="sec">
+  <h2 class="sh">सिद्धांत</h2>
+  <p class="sp">यहाँ आपके यथार्थ सिद्धांत और सृष्टि की सर्वश्रेष्ठ शिक्षाएँ दिखाई देंगी।</p>
+</section>
+
+<!-- Connect -->
+<section id="connect" class="sec">
+  <h2 class="sh">Connect</h2>
+  <p class="sp">Omniverse © 2026 • Built by Rampaul Saini</p>
+</section>
+
+<footer>
+  <p>© 2026 Omniverse • All Rights Reserved</p>
+  <p>शिरोमणि रामपॉल सैनी</p>
+</footer>
+
+<script>
+// Cursor
+const cur = document.getElementById('cur');
+const curR = document.getElementById('curR');
+document.addEventListener('mousemove', e=>{
+  cur.style.left=e.clientX+'px';
+  cur.style.top=e.clientY+'px';
+  curR.style.left=e.clientX+'px';
+  curR.style.top=e.clientY+'px';
+});
+
+// Mobile menu
+const hm=document.getElementById('hm');
+const mob=document.getElementById('mob');
+hm.addEventListener('click',()=>mob.classList.toggle('open'));
+
+// Projects placeholder (replace with GitHub API fetch if needed)
+const projectsContainer=document.getElementById('projects-container');
+const projMsg=document.getElementById('proj-msg');
+const dummyProjects=[
+  {name:'Nishpaksh Samaj Omniverse Truth', url:'https://github.com/rampaulsaini/Nishpaksh-Samaj-Omniverse-Truth'},
+  {name:'Shiromani Rampal Saini', url:'https://github.com/rampaulsaini/shiromani-rampal-saini'},
+];
+projMsg.style.display='none';
+dummyProjects.forEach(p=>{
+  const a=document.createElement('a');
+  a.href=p.url;
+  a.textContent=p.name;
+  a.target='_blank';
+  a.style.display='block';
+  a.style.margin='6px 0';
+  a.style.color='var(--g2)';
+  a.style.textDecoration='underline';
+  projectsContainer.appendChild(a);
+});
+</script>
+
+</body>
+</html>
+
 <!doctype html>
 <html lang="hi">
 <head>
