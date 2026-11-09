@@ -36,6 +36,6 @@ Example request:
 
 ## Evidence and limitations
 
-A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
+A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. The database records the server-side consent timestamp and the fixed consent text version (`enquiry-consent-v1`); the public form must display the matching, reviewed consent wording before sending `consent: true`. Do not connect the public form until that wording and a privacy/retention notice are published. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
 
-This pilot does not include customer login, automated outreach, payment processing, payment webhooks, or automatic order acceptance. Enquiries require human review. Do not put secrets or payment credentials in source control.
+This pilot does not include customer login, automated outreach, payment processing, payment webhooks, or automatic order acceptance. Define and publish a lawful data-retention period and a contact for privacy requests before collecting real customer details. Enquiries require human review. Do not put secrets or payment credentials in source control.
