@@ -45,10 +45,11 @@ test("fresh schema migration enforces explicit true consent", { skip: !databaseU
       (error) => error.code === "23514"
     );
     const accepted = await client.query(
-      "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, 'Test User', 'test@example.com', 'Research', 'A sufficiently detailed request', TRUE) RETURNING consent_version",
+      "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, 'Test User', 'test@example.com', 'Research', 'A sufficiently detailed request', TRUE) RETURNING consent_version, consent_at",
       [randomUUID()]
     );
     assert.equal(accepted.rows[0].consent_version, "enquiry-consent-v1");
+    assert.ok(accepted.rows[0].consent_at);
   });
 });
 
@@ -81,7 +82,7 @@ test("legacy schema with non-consenting records fails closed without rewriting t
   });
 });
 
-test("legacy schema with affirmative consent upgrades and rejects later false consent", { skip: !databaseUrl && "Set MIGRATION_TEST_DATABASE_URL to run PostgreSQL migration tests" }, async () => {
+test("legacy affirmative rows retain unknown consent version and unknown timestamp", { skip: !databaseUrl && "Set MIGRATION_TEST_DATABASE_URL to run PostgreSQL migration tests" }, async () => {
   await inIsolatedSchema(async (client) => {
     await client.query(`
       CREATE TABLE customer_enquiries (
@@ -95,9 +96,10 @@ test("legacy schema with affirmative consent upgrades and rejects later false co
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       )
     `);
+    const legacyId = randomUUID();
     await client.query(
       "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, 'Legacy User', 'legacy@example.com', 'Research', 'Previously consented record', TRUE)",
-      [randomUUID()]
+      [legacyId]
     );
     await applyMigration(client);
     await assert.rejects(
@@ -107,8 +109,15 @@ test("legacy schema with affirmative consent upgrades and rejects later false co
       ),
       (error) => error.code === "23514"
     );
-    const upgraded = await client.query("SELECT consent_version, consent_at FROM customer_enquiries");
-    assert.equal(upgraded.rows[0].consent_version, "enquiry-consent-v1");
-    assert.ok(upgraded.rows[0].consent_at);
+    const legacy = await client.query("SELECT consent_version, consent_at FROM customer_enquiries WHERE id = $1", [legacyId]);
+    assert.equal(legacy.rows[0].consent_version, "legacy-unknown");
+    assert.equal(legacy.rows[0].consent_at, null);
+
+    const current = await client.query(
+      "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, 'New User', 'new@example.com', 'Research', 'A sufficiently detailed new request', TRUE) RETURNING consent_version, consent_at",
+      [randomUUID()]
+    );
+    assert.equal(current.rows[0].consent_version, "enquiry-consent-v1");
+    assert.ok(current.rows[0].consent_at);
   });
 });
