@@ -9,7 +9,7 @@ const databaseUrl = process.env.MIGRATION_TEST_DATABASE_URL || process.env.DATAB
 const migration = await readFile(new URL("../migrations/001_create_customer_enquiries.sql", import.meta.url), "utf8");
 
 async function inIsolatedSchema(run) {
-  const client = new Client({ connectionString: databaseUrl, ssl: { rejectUnauthorized: true } });
+  const client = new Client({ connectionString: databaseUrl, ssl: databaseUrl.includes("localhost") || databaseUrl.includes("127.0.0.1") ? false : { rejectUnauthorized: true } });
   const schema = `migration_test_${randomUUID().replaceAll("-", "")}`;
   await client.connect();
   try {
