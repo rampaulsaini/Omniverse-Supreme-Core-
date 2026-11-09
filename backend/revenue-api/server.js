@@ -4,7 +4,7 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import pg from "pg";
 import { randomUUID } from "node:crypto";
-import { z } from "zod";
+import { z } from "zod/v4";
 import { pathToFileURL } from "node:url";
 
 const { Pool } = pg;
