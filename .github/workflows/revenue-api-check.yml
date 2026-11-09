@@ -35,15 +35,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Use the actual PR head branch, not GitHub's synthetic merge ref,
-          # so the lockfile commit can be pushed as a fast-forward.
           ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: backend/revenue-api/package.json
+          cache-dependency-path: backend/revenue-api/package-lock.json
       - name: Verify clean reproducible install from committed lockfile
         run: npm ci --ignore-scripts
       - name: Run API and PostgreSQL migration tests
