@@ -94,3 +94,12 @@ test("malformed JSON receives a controlled client error", async () => {
   assert.equal(response.status, 400);
   assert.equal(response.body.error, "Invalid JSON body");
 });
+
+test("oversized JSON receives a controlled 413 response", async () => {
+  const response = await request(app)
+    .post("/api/enquiries")
+    .set("Content-Type", "application/json")
+    .send(JSON.stringify({ brief: "x".repeat(17 * 1024) }));
+  assert.equal(response.status, 413);
+  assert.equal(response.body.error, "Request body too large");
+});
