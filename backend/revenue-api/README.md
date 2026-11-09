@@ -16,6 +16,10 @@ A deliberately small Node.js API for the first real revenue workflow: customer e
 - `ALLOWED_ORIGINS`: comma-separated exact public showroom origins. Browser requests are rejected unless their `Origin` matches this allowlist. Set this before connecting the public form. Requests without an `Origin` header (for example, server-side health checks) remain permitted.
 - `PGSSLMODE=disable`: local development only. TLS verification is enabled by default.
 
+## Local verification
+
+Run `npm install` and `npm run check`. The test suite uses an isolated HTTP client and deliberately runs without a database secret; it verifies health/readiness separation, consent validation, rejection of unconfigured enquiries, route handling, and the configured browser-origin policy. It does not replace a live Neon integration test.
+
 ## Endpoints
 
 - `GET /health`: process health only; does not claim database connectivity.
