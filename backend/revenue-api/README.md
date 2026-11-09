@@ -25,6 +25,8 @@ Run `npm install` and `npm run check`. The test suite uses an isolated HTTP clie
 
 Apply `migrations/001_create_customer_enquiries.sql` through a reviewed migration workflow before enabling the public enquiry form. Test it on an isolated Neon branch first. The API intentionally does not create or alter tables at runtime; `/ready` only verifies the schema and enquiry writes fail closed if the migration has not been applied.
 
+Historical rows are deliberately not assigned today's consent evidence: the migration marks their consent text version as `legacy-unknown` and leaves `consent_at` NULL. New rows receive `enquiry-consent-v1` and a server timestamp. This prevents migration time from being misrepresented as the time a person consented.
+
 ## Endpoints
 
 - `GET /health`: process health only; does not claim database connectivity.
@@ -53,6 +55,6 @@ The bilingual consent/privacy notice is currently a **draft only**, not approved
 
 ## Evidence and limitations
 
-A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. The database records the server-side consent timestamp and the fixed consent text version (`enquiry-consent-v1`); the public form must display the matching, reviewed consent wording before sending `consent: true`. Do not connect the public form until that wording and a privacy/retention notice are published. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
+A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. New records store the server-side consent timestamp and fixed consent text version (`enquiry-consent-v1`); historical rows remain explicitly marked `legacy-unknown` with no fabricated consent timestamp. The public form must display the matching, reviewed consent wording before sending `consent: true`. Do not connect the public form until that wording and a privacy/retention notice are published. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
 
 This pilot does not include customer login, automated outreach, payment processing, payment webhooks, or automatic order acceptance. Define and publish a lawful data-retention period and a contact for privacy requests before collecting real customer details. Enquiries require human review. Do not put secrets or payment credentials in source control.
