@@ -62,3 +62,5 @@ jobs:
             backend/revenue-api/npm-audit-report.json
           if-no-files-found: error
           retention-days: 7
+      - name: Enforce high and critical dependency audit threshold
+        run: npm audit --audit-level=high
