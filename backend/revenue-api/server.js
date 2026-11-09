@@ -55,10 +55,16 @@ async function ensureSchema() {
         service TEXT NOT NULL,
         brief TEXT NOT NULL,
         consent BOOLEAN NOT NULL CHECK (consent = TRUE),
+        consent_version TEXT NOT NULL DEFAULT 'enquiry-consent-v1',
+        consent_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         status TEXT NOT NULL DEFAULT 'new'
           CHECK (status IN ('new', 'reviewing', 'proposal_sent', 'accepted', 'declined', 'closed')),
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       );
+      ALTER TABLE customer_enquiries
+        ADD COLUMN IF NOT EXISTS consent_version TEXT NOT NULL DEFAULT 'enquiry-consent-v1';
+      ALTER TABLE customer_enquiries
+        ADD COLUMN IF NOT EXISTS consent_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
       CREATE INDEX IF NOT EXISTS customer_enquiries_created_at_idx
         ON customer_enquiries (created_at DESC);
     `).catch((error) => {
@@ -96,8 +102,8 @@ app.post("/api/enquiries", async (req, res) => {
     const id = randomUUID();
     const { name, email, service, brief, consent } = parsed.data;
     await pool.query(
-      "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, $2, $3, $4, $5, $6)",
-      [id, name, email, service, brief, consent]
+      "INSERT INTO customer_enquiries (id, name, email, service, brief, consent, consent_version, consent_at) VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())",
+      [id, name, email, service, brief, consent, "enquiry-consent-v1"]
     );
     return res.status(201).json({
       accepted: true,
