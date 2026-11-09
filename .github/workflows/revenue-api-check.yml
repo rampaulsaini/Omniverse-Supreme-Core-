@@ -48,10 +48,17 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Run API and PostgreSQL migration tests
         run: npm run check
-      - name: Preserve generated lockfile for review
+      - name: Capture dependency security advisory details
+        shell: bash
+        run: |
+          npm audit --json > npm-audit-report.json || true
+          node -e 'const r=require("./npm-audit-report.json"); console.log(JSON.stringify({metadata:r.metadata?.vulnerabilities, advisories:Object.entries(r.vulnerabilities||{}).map(([name,v])=>({name,severity:v.severity,isDirect:v.isDirect,range:v.range,via:v.via.map(x=>typeof x==="string"?x:{name:x.name,title:x.title,url:x.url,range:x.range}),fixAvailable:v.fixAvailable}))},null,2))'
+      - name: Preserve lockfile and audit report for review
         uses: actions/upload-artifact@v4
         with:
-          name: revenue-api-package-lock
-          path: backend/revenue-api/package-lock.json
+          name: revenue-api-dependency-review
+          path: |
+            backend/revenue-api/package-lock.json
+            backend/revenue-api/npm-audit-report.json
           if-no-files-found: error
           retention-days: 7
