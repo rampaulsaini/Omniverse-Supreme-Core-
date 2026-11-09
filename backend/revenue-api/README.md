@@ -42,6 +42,10 @@ Example request:
 }
 ```
 
+## Public endpoint abuse boundary
+
+CORS is a browser-origin policy, not authentication: non-browser clients can omit or forge an `Origin` header and may still call the public endpoint. The current 30-requests-per-15-minutes rate limit is a basic safeguard, not bot protection or a guarantee against distributed abuse. Before public launch, add an appropriate anti-automation control (for example, a server-verified challenge or equivalent), request monitoring, and an operational process for abuse reports. Do not describe the endpoint as private or abuse-proof.
+
 ## Evidence and limitations
 
 A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. The database records the server-side consent timestamp and the fixed consent text version (`enquiry-consent-v1`); the public form must display the matching, reviewed consent wording before sending `consent: true`. Do not connect the public form until that wording and a privacy/retention notice are published. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
