@@ -13,7 +13,7 @@ A deliberately small Node.js API for the first real revenue workflow: customer e
 ## Required environment
 
 - `DATABASE_URL`: Neon PostgreSQL connection string (store as a Railway secret; never commit it).
-- `ALLOWED_ORIGINS`: optional comma-separated public showroom origins. If omitted, the API allows cross-origin requests without credentials; set this in production to the exact showroom origin(s).
+- `ALLOWED_ORIGINS`: comma-separated exact public showroom origins. Browser requests are rejected unless their `Origin` matches this allowlist. Set this before connecting the public form. Requests without an `Origin` header (for example, server-side health checks) remain permitted.
 - `PGSSLMODE=disable`: local development only. TLS verification is enabled by default.
 
 ## Endpoints
