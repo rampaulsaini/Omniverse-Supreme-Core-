@@ -94,6 +94,9 @@ app.use((error, _req, res, _next) => {
   if (error?.message === "Origin not allowed") {
     return res.status(403).json({ error: "Origin not allowed" });
   }
+  if (error?.type === "entity.too.large" || error?.status === 413) {
+    return res.status(413).json({ error: "Request body too large" });
+  }
   if (error instanceof SyntaxError && error.status === 400 && "body" in error) {
     return res.status(400).json({ error: "Invalid JSON body" });
   }
