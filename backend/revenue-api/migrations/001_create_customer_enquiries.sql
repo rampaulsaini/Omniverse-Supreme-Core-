@@ -1,7 +1,7 @@
 -- 001: consent-backed customer enquiry intake
 -- Apply through a reviewed migration before enabling the public enquiry form.
--- Existing legacy rows without affirmative consent intentionally make validation
--- fail: do not manufacture consent or silently migrate those records.
+-- Legacy rows without affirmative consent intentionally make validation fail:
+-- never manufacture consent or silently migrate those records.
 
 CREATE TABLE IF NOT EXISTS customer_enquiries (
   id UUID PRIMARY KEY,
@@ -18,16 +18,15 @@ CREATE TABLE IF NOT EXISTS customer_enquiries (
   CONSTRAINT customer_enquiries_consent_true_check CHECK (consent IS TRUE)
 );
 
--- Add metadata columns for an earlier pilot table, without changing historical
--- consent values or inventing consent for rows that predate this migration.
+-- Add metadata columns for an earlier pilot table without changing historical
+-- consent values or inventing consent for rows predating this migration.
 ALTER TABLE customer_enquiries
   ADD COLUMN IF NOT EXISTS consent_version TEXT NOT NULL DEFAULT 'enquiry-consent-v1';
 ALTER TABLE customer_enquiries
   ADD COLUMN IF NOT EXISTS consent_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- Ensure an existing table also has an affirmative-consent constraint.
--- NOT VALID avoids an immediate table scan, but VALIDATE below must succeed
--- before this migration completes. NULL and FALSE legacy values fail closed.
+-- NOT VALID defers the scan; VALIDATE below must pass before migration completes.
 DO $migration$
 BEGIN
   IF NOT EXISTS (
