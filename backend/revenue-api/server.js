@@ -66,6 +66,9 @@ app.get("/ready", async (_req, res) => {
 });
 
 app.post("/api/enquiries", async (req, res) => {
+  if (process.env.PUBLIC_ENQUIRIES_ENABLED !== "true") {
+    return res.status(503).json({ error: "Public enquiry intake is disabled until launch prerequisites are approved" });
+  }
   const parsed = enquirySchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: "Invalid enquiry", fields: parsed.error.issues.map((issue) => issue.path.join(".")) });
