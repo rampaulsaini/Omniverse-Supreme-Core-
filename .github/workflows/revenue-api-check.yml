@@ -37,6 +37,11 @@ jobs:
         working-directory: backend/revenue-api
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Use the actual PR head branch, not GitHub's synthetic merge ref,
+          # so the lockfile commit can be pushed as a fast-forward.
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
