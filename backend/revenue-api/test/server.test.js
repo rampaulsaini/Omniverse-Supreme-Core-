@@ -81,5 +81,16 @@ test("approved showroom origin receives an explicit CORS allow header", async ()
 test("unapproved browser origin is not granted CORS access", async () => {
   const response = await request(app).get("/health")
     .set("Origin", "https://unapproved.example");
+  assert.equal(response.status, 403);
+  assert.equal(response.body.error, "Origin not allowed");
   assert.equal(response.headers["access-control-allow-origin"], undefined);
+});
+
+test("malformed JSON receives a controlled client error", async () => {
+  const response = await request(app)
+    .post("/api/enquiries")
+    .set("Content-Type", "application/json")
+    .send('{"name":');
+  assert.equal(response.status, 400);
+  assert.equal(response.body.error, "Invalid JSON body");
 });
