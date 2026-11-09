@@ -103,3 +103,23 @@ test("oversized JSON receives a controlled 413 response", async () => {
   assert.equal(response.status, 413);
   assert.equal(response.body.error, "Request body too large");
 });
+
+test("approved showroom origin can complete enquiry preflight", async () => {
+  const response = await request(app)
+    .options("/api/enquiries")
+    .set("Origin", "https://showroom.example")
+    .set("Access-Control-Request-Method", "POST")
+    .set("Access-Control-Request-Headers", "content-type");
+  assert.equal(response.status, 204);
+  assert.equal(response.headers["access-control-allow-origin"], "https://showroom.example");
+  assert.match(response.headers["access-control-allow-methods"], /POST/);
+});
+
+test("unapproved origin cannot complete enquiry preflight", async () => {
+  const response = await request(app)
+    .options("/api/enquiries")
+    .set("Origin", "https://unapproved.example")
+    .set("Access-Control-Request-Method", "POST");
+  assert.equal(response.status, 403);
+  assert.equal(response.body.error, "Origin not allowed");
+});
