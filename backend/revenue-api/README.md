@@ -18,12 +18,16 @@ A deliberately small Node.js API for the first real revenue workflow: customer e
 
 ## Local verification
 
-Run `npm install` and `npm run check`. The test suite uses an isolated HTTP client and deliberately runs without a database secret; it verifies health/readiness separation, consent validation, rejection of unconfigured enquiries, route handling, and the configured browser-origin policy. It does not replace a live Neon integration test.
+Run `npm install` and `npm run check`. The test suite uses an isolated HTTP client and deliberately runs without a database secret; it verifies health/readiness separation, consent validation, rejection of unconfigured enquiries, route handling, and the configured browser-origin policy. The migration SQL has been applied and checked on an isolated temporary Neon branch, including a successful consented insert and a rejected `consent = false` insert; that temporary branch was then discarded. This does not prove the production database has been migrated or that the deployed API can connect to it.
+
+## Database migration
+
+Apply `migrations/001_create_customer_enquiries.sql` through a reviewed migration workflow before enabling the public enquiry form. Test it on an isolated Neon branch first. The API intentionally does not create or alter tables at runtime; `/ready` only verifies the schema and enquiry writes fail closed if the migration has not been applied.
 
 ## Endpoints
 
 - `GET /health`: process health only; does not claim database connectivity.
-- `GET /ready`: verifies PostgreSQL connectivity and creates the minimal enquiry table if needed.
+- `GET /ready`: verifies PostgreSQL connectivity and confirms the expected enquiry table/columns already exist. It never changes the database schema.
 - `POST /api/enquiries`: validates and stores a consented enquiry; returns a reference ID.
 
 Example request:
