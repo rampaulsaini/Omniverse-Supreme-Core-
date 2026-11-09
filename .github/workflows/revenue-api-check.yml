@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: backend/revenue-api/package-lock.json
+          cache-dependency-path: backend/revenue-api/package.json
       - name: Resolve and generate dependency lockfile
         run: npm install --package-lock-only --ignore-scripts
       - name: Verify clean reproducible install from generated lockfile
