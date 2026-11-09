@@ -71,7 +71,7 @@ test("legacy schema with non-consenting records fails closed without rewriting t
       "INSERT INTO customer_enquiries (id, name, email, service, brief, consent) VALUES ($1, 'Legacy User', 'legacy@example.com', 'Research', 'Legacy record requiring review', FALSE)",
       [legacyId]
     );
-    await assert.rejects(applyMigration, (error) => error.code === "23514");
+    await assert.rejects(() => applyMigration(client), (error) => error.code === "23514");
     const legacy = await client.query("SELECT consent FROM customer_enquiries WHERE id = $1", [legacyId]);
     assert.equal(legacy.rows[0].consent, false);
     const columns = await client.query(
