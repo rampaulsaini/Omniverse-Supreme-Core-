@@ -16,7 +16,11 @@ app.use(helmet());
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
   .split(",").map((value) => value.trim()).filter(Boolean);
 app.use(cors({
-  origin: allowedOrigins.length ? allowedOrigins : "*",
+  origin(origin, callback) {
+    // Permit same-origin/server requests without an Origin header; browsers must match the allowlist.
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error("Origin not allowed"));
+  },
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"]
 }));
