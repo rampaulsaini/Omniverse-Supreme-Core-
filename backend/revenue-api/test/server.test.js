@@ -54,7 +54,18 @@ test("enquiry rejects false consent and unknown fields", async () => {
   assert.equal(extraField.status, 400);
 });
 
+test("public enquiry intake is disabled unless an explicit launch flag is enabled", async () => {
+  delete process.env.PUBLIC_ENQUIRIES_ENABLED;
+  const response = await request(app).post("/api/enquiries").send({
+    name: "Test Customer", email: "customer@example.com", service: "Research summary",
+    brief: "Please prepare a short research summary for review.", consent: true
+  });
+  assert.equal(response.status, 503);
+  assert.match(response.body.error, /disabled until launch prerequisites are approved/);
+});
+
 test("valid enquiry is not falsely accepted when database is not configured", async () => {
+  process.env.PUBLIC_ENQUIRIES_ENABLED = "true";
   const response = await request(app).post("/api/enquiries").send({
     name: "Test Customer",
     email: "customer@example.com",
@@ -64,6 +75,7 @@ test("valid enquiry is not falsely accepted when database is not configured", as
   });
   assert.equal(response.status, 503);
   assert.equal(response.body.error, "Enquiry service is not configured yet");
+  delete process.env.PUBLIC_ENQUIRIES_ENABLED;
 });
 
 test("unknown routes return a clear 404", async () => {
