@@ -13,6 +13,8 @@ const port = Number(process.env.PORT || 3000);
 const databaseUrl = process.env.DATABASE_URL;
 
 app.disable("x-powered-by");
+// Do not trust forwarded client-IP headers until the exact Railway proxy chain is verified.
+app.set("trust proxy", false);
 app.use(helmet());
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "")
   .split(",").map((value) => value.trim()).filter(Boolean);
