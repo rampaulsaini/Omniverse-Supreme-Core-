@@ -46,6 +46,10 @@ Example request:
 
 CORS is a browser-origin policy, not authentication: non-browser clients can omit or forge an `Origin` header and may still call the public endpoint. The current 30-requests-per-15-minutes rate limit is a basic safeguard, not bot protection or a guarantee against distributed abuse. Before public launch, add an appropriate anti-automation control (for example, a server-verified challenge or equivalent), request monitoring, and an operational process for abuse reports. Do not describe the endpoint as private or abuse-proof.
 
+## Public consent notice status
+
+The bilingual consent/privacy notice is currently a **draft only**, not approved or published: [`PUBLIC-CONSENT-DRAFT.md`](./PUBLIC-CONSENT-DRAFT.md). It contains placeholders for the responsible entity, retention period, processors, and privacy contact. Do not collect real customer information or connect the public form until those details are completed, reviewed, published, and the displayed wording is aligned with the API consent version (`enquiry-consent-v1`).
+
 ## Evidence and limitations
 
 A successful response from `POST /api/enquiries` proves only that an enquiry record was accepted by this API. The database records the server-side consent timestamp and the fixed consent text version (`enquiry-consent-v1`); the public form must display the matching, reviewed consent wording before sending `consent: true`. Do not connect the public form until that wording and a privacy/retention notice are published. It does not prove a proposal was sent, an order was accepted, payment was received, or delivery was completed. Those stages must be implemented and recorded separately with auditable evidence.
