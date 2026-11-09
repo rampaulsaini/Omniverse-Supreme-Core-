@@ -5,6 +5,7 @@ import rateLimit from "express-rate-limit";
 import pg from "pg";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
+import { pathToFileURL } from "node:url";
 
 const { Pool } = pg;
 const app = express();
@@ -118,15 +119,24 @@ app.post("/api/enquiries", async (req, res) => {
 
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
 
-const server = app.listen(port, "0.0.0.0", () => {
-  console.log(`Shirmani Revenue API listening on ${port}`);
-});
+export { app };
 
-async function shutdown() {
+async function shutdown(server) {
   server.close(async () => {
     if (pool) await pool.end();
     process.exit(0);
   });
 }
-process.on("SIGTERM", shutdown);
-process.on("SIGINT", shutdown);
+
+function start() {
+  const server = app.listen(port, "0.0.0.0", () => {
+    console.log(`Shirmani Revenue API listening on ${port}`);
+  });
+  process.on("SIGTERM", () => shutdown(server));
+  process.on("SIGINT", () => shutdown(server));
+  return server;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  start();
+}
