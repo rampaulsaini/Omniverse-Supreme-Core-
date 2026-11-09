@@ -16,6 +16,22 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: revenue_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d revenue_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      MIGRATION_TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/revenue_test
     defaults:
       run:
         working-directory: backend/revenue-api
@@ -30,7 +46,8 @@ jobs:
         run: npm install --package-lock-only --ignore-scripts
       - name: Verify clean reproducible install from generated lockfile
         run: npm ci --ignore-scripts
-      - run: npm run check
+      - name: Run API and PostgreSQL migration tests
+        run: npm run check
       - name: Preserve generated lockfile for review
         uses: actions/upload-artifact@v4
         with:
