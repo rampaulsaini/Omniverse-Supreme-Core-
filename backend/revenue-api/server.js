@@ -44,36 +44,11 @@ const enquirySchema = z.object({
   consent: z.literal(true)
 }).strict();
 
-let schemaReady;
-async function ensureSchema() {
+async function verifySchema() {
   if (!pool) throw new Error("DATABASE_URL is not configured");
-  if (!schemaReady) {
-    schemaReady = pool.query(`
-      CREATE TABLE IF NOT EXISTS customer_enquiries (
-        id UUID PRIMARY KEY,
-        name TEXT NOT NULL,
-        email TEXT NOT NULL,
-        service TEXT NOT NULL,
-        brief TEXT NOT NULL,
-        consent BOOLEAN NOT NULL CHECK (consent = TRUE),
-        consent_version TEXT NOT NULL DEFAULT 'enquiry-consent-v1',
-        consent_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        status TEXT NOT NULL DEFAULT 'new'
-          CHECK (status IN ('new', 'reviewing', 'proposal_sent', 'accepted', 'declined', 'closed')),
-        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-      );
-      ALTER TABLE customer_enquiries
-        ADD COLUMN IF NOT EXISTS consent_version TEXT NOT NULL DEFAULT 'enquiry-consent-v1';
-      ALTER TABLE customer_enquiries
-        ADD COLUMN IF NOT EXISTS consent_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-      CREATE INDEX IF NOT EXISTS customer_enquiries_created_at_idx
-        ON customer_enquiries (created_at DESC);
-    `).catch((error) => {
-      schemaReady = undefined;
-      throw error;
-    });
-  }
-  await schemaReady;
+  await pool.query(
+    "SELECT id, name, email, service, brief, consent, consent_version, consent_at, status, created_at FROM customer_enquiries LIMIT 0"
+  );
 }
 
 app.get("/health", (_req, res) => {
@@ -83,8 +58,7 @@ app.get("/health", (_req, res) => {
 app.get("/ready", async (_req, res) => {
   if (!pool) return res.status(503).json({ status: "not_ready", reason: "DATABASE_URL is not configured" });
   try {
-    await ensureSchema();
-    await pool.query("SELECT 1");
+    await verifySchema();
     return res.json({ status: "ready", database: "connected" });
   } catch {
     return res.status(503).json({ status: "not_ready", database: "unavailable" });
@@ -99,7 +73,6 @@ app.post("/api/enquiries", async (req, res) => {
   if (!pool) return res.status(503).json({ error: "Enquiry service is not configured yet" });
 
   try {
-    await ensureSchema();
     const id = randomUUID();
     const { name, email, service, brief, consent } = parsed.data;
     await pool.query(
