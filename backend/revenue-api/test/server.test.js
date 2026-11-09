@@ -11,6 +11,10 @@ before(() => {
   // Tests deliberately run without a database secret or a network listener.
 });
 
+test("app refuses forwarded client-IP trust by default", () => {
+  assert.equal(app.get("trust proxy"), false);
+});
+
 test("health reports process health without claiming database readiness", async () => {
   const response = await request(app).get("/health");
   assert.equal(response.status, 200);
