@@ -1,0 +1,64 @@
+name: Revenue API Check
+
+on:
+  pull_request:
+    paths:
+      - "backend/revenue-api/**"
+      - ".github/workflows/revenue-api-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "backend/revenue-api/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: revenue_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d revenue_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      MIGRATION_TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/revenue_test
+    defaults:
+      run:
+        working-directory: backend/revenue-api
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/revenue-api/package-lock.json
+      - name: Verify clean reproducible install from committed lockfile
+        run: npm ci --ignore-scripts
+      - name: Run API and PostgreSQL migration tests
+        run: npm run check
+      - name: Capture dependency security advisory details
+        shell: bash
+        run: |
+          npm audit --json > npm-audit-report.json || true
+          node -e 'const r=require("./npm-audit-report.json"); console.log(JSON.stringify({metadata:r.metadata?.vulnerabilities, advisories:Object.entries(r.vulnerabilities||{}).map(([name,v])=>({name,severity:v.severity,isDirect:v.isDirect,range:v.range,via:v.via.map(x=>typeof x==="string"?x:{name:x.name,title:x.title,url:x.url,range:x.range}),fixAvailable:v.fixAvailable}))},null,2))'
+      - name: Preserve lockfile and audit report for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: revenue-api-dependency-review
+          path: |
+            backend/revenue-api/package-lock.json
+            backend/revenue-api/npm-audit-report.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Enforce high and critical dependency audit threshold
+        run: npm audit --audit-level=high
