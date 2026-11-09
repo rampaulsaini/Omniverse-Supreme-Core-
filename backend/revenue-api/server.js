@@ -90,6 +90,17 @@ app.post("/api/enquiries", async (req, res) => {
   }
 });
 
+app.use((error, _req, res, _next) => {
+  if (error?.message === "Origin not allowed") {
+    return res.status(403).json({ error: "Origin not allowed" });
+  }
+  if (error instanceof SyntaxError && error.status === 400 && "body" in error) {
+    return res.status(400).json({ error: "Invalid JSON body" });
+  }
+  console.error("Request handling failed:", error?.message || "Unknown error");
+  return res.status(500).json({ error: "Internal server error" });
+});
+
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
 
 export { app };
