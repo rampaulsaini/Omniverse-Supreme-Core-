@@ -13,6 +13,7 @@ A deliberately small Node.js API for the first real revenue workflow: customer e
 ## Required environment
 
 - `DATABASE_URL`: Neon PostgreSQL connection string (store as a Railway secret; never commit it).
+- `PUBLIC_ENQUIRIES_ENABLED`: must be set to the exact string `true` only after launch prerequisites are approved; otherwise `POST /api/enquiries` remains disabled and returns HTTP 503.
 - `ALLOWED_ORIGINS`: comma-separated exact public showroom origins. Browser requests are rejected unless their `Origin` matches this allowlist. Set this before connecting the public form. Requests without an `Origin` header (for example, server-side health checks) remain permitted.
 - `PGSSLMODE=disable`: local development only. TLS verification is enabled by default.
 
@@ -44,7 +45,7 @@ Example request:
 
 ## Public endpoint abuse boundary
 
-CORS is a browser-origin policy, not authentication: non-browser clients can omit or forge an `Origin` header and may still call the public endpoint. The current 30-requests-per-15-minutes rate limit is a basic safeguard, not bot protection or a guarantee against distributed abuse. Before public launch, add an appropriate anti-automation control (for example, a server-verified challenge or equivalent), request monitoring, and an operational process for abuse reports. Do not describe the endpoint as private or abuse-proof.
+CORS is a browser-origin policy, not authentication: non-browser clients can omit or forge an `Origin` header and may still call the public endpoint. The current 30-requests-per-15-minutes rate limit is a basic safeguard, not bot protection or a guarantee against distributed abuse. Public intake is disabled by default through `PUBLIC_ENQUIRIES_ENABLED`; do not set it to `true` until the consent notice, migration, abuse controls, and monitoring are approved. Before public launch, add an appropriate anti-automation control (for example, a server-verified challenge or equivalent), request monitoring, and an operational process for abuse reports. Do not describe the endpoint as private or abuse-proof.
 
 ## Public consent notice status
 
