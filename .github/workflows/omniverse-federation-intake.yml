@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: omniverse-federation-intake-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   intake:
     runs-on: ubuntu-latest
@@ -21,20 +25,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Record federation receipt
         env:
-          BRIEF: ${{ inputs.brief }}
+          BRIEF: ${{ github.event.client_payload.brief || inputs.brief || '' }}
+          RECEIVER_RUN_ID: ${{ github.run_id }}
           EVENT: ${{ github.event_name }}
           SOURCE: ${{ github.event.client_payload.source_repository }}
           MODE: ${{ github.event.client_payload.automation_mode }}
-        run: |
-          set -euo pipefail
-          mkdir -p federation/inbox
-          python - <<'PY'
-          import json, os
-          from datetime import datetime, timezone
-          stamp=datetime.now(timezone.utc)
-          payload={"schema_version":1,"received_at":stamp.isoformat(),"event":os.getenv("EVENT",""),"source_repository":os.getenv("SOURCE") or "manual","automation_mode":os.getenv("MODE") or "MANUAL","brief":os.getenv("BRIEF",""),"status":"RECEIVED","policies":{"no_secret_exposure":True,"no_untrusted_execution":True,"human_review_before_irreversible_action":True}}
-          with open("federation/inbox/"+stamp.strftime("%Y%m%dT%H%M%SZ")+".json","w",encoding="utf-8") as f: json.dump(payload,f,ensure_ascii=False,indent=2)
-          PY
+        run: python scripts/record_federation_receipt.py
       - name: Commit receipt
         run: |
           git config user.name "Omniverse Automission"
